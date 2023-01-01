@@ -2,12 +2,12 @@
   <div>
     <input type="text" placeholder="Add Todo" v-model="title" />
     <div>{{ title }}</div>
-    <button @click="addTodo()">add</button>
+    <button @click="addTodo()" class="px-4 py-2 bg-blue-500 text-white hover:bg-gray-600 rounded-full focus:outline-none">add</button>
     <div v-for="todo in todos">
       <p>
         {{ todo.recipeTitle }} {{ todo.recipeType }}
-        <button @click="deleteTodo(todo.id)">delete</button>
-        <button @click="recipeDetails = !recipeDetails">details</button>
+        <button @click="deleteTodo(todo.id)" class="px-4 py-2 bg-blue-500 text-white hover:bg-gray-600 rounded-full focus:outline-none">delete</button>
+        <button @click="recipeDetails = !recipeDetails" class="px-4 py-2 bg-blue-500 text-white hover:bg-gray-600 rounded-full focus:outline-none">details</button>
       </p>
       <div v-if="recipeDetails">
         {{ todo.recipeDescription }}
