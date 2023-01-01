@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-blue-600">
     <nav>
       <router-link to="/"> Home </router-link> |
       <span v-if="isLoggedIn">

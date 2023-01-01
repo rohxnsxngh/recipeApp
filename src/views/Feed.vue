@@ -4,7 +4,23 @@
     <div>{{ title }}</div>
     <button @click="addTodo()">add</button>
     <div v-for="todo in todos">
-      <p>{{ todo }} <button @click="deleteTodo(todo.id)">delete</button></p>
+      <p>
+        {{ todo.recipeTitle }} {{ todo.recipeType }}
+        <button @click="deleteTodo(todo.id)">delete</button>
+        <button @click="recipeDetails = !recipeDetails">details</button>
+      </p>
+      <div v-if="recipeDetails">
+        {{ todo.recipeDescription }}
+        <br />
+        <div>
+          <ul v-for="ingredient in todo.ingredients">
+            <li>{{ ingredient }}</li>
+          </ul>
+          <ul v-for="amounts in todo.ingredientsAmounts">
+            <li>{{ amounts }}</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -38,6 +54,7 @@ export default {
     return {
       todos: [],
       title: "",
+      recipeDetails: false,
     };
   },
   methods: {
@@ -48,10 +65,10 @@ export default {
         .collection("users")
         // .doc(firebase.auth().currentUser.uid)
         .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
-        .collection("todos");
+        .collection("recipes");
 
       todosRef.onSnapshot((snap) => {
-        this.todos = [];
+        // this.todos = [];
         snap.forEach((doc) => {
           var todo = doc.data();
           todo.id = doc.id;
