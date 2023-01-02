@@ -2,7 +2,7 @@
   <div class="max-w-none">
     <!-- add recipes -->
     <div>
-      <AddRecipe/>
+      <AddRecipe />
     </div>
 
     <!-- display all recipes -->
@@ -13,19 +13,19 @@
     <div class="modal">
       <div class="modal-box w-11/12 max-w-5xl">
         <!-- inside modal -->
-        <div v-for="todo in todos" class="flex justify-center mt-8">
-          <div>
+        <div v-for="recipe in recipes" class="flex justify-center mt-8">
+          <div v-if="this.recipeId == recipe.id">
             <label class="block font-bold mb-2 text-gray-700">
               Recipe Description
             </label>
-            <p contenteditable="true">{{ todo.recipeDescription }}</p>
+            <p contenteditable="true">{{ recipe.recipeDescription }}</p>
             <br />
             <div class="flex flex-inline">
               <div class="">
                 <label class="block font-bold mb-2 text-gray-700">
                   Ingredients
                 </label>
-                <ul v-for="ingredient in todo.ingredients">
+                <ul v-for="ingredient in recipe.ingredients">
                   <li contenteditable="true">{{ ingredient }}</li>
                 </ul>
               </div>
@@ -33,7 +33,7 @@
                 <label class="block font-bold mb-2 text-gray-700">
                   Amount
                 </label>
-                <ul v-for="amounts in todo.ingredientsAmounts">
+                <ul v-for="amounts in recipe.ingredientsAmounts">
                   <li contenteditable="true">{{ amounts }}</li>
                 </ul>
               </div>
@@ -46,10 +46,11 @@
       </div>
     </div>
 
-    <div v-for="todo in todos" class="flex justify-center mt-8">
+    <div v-for="recipe in recipes" class="flex justify-center mt-8">
       <div>
-        {{ todo.recipeTitle }} {{ todo.recipeType }}
-        <label for="existingRecipe" class="btn btn-sm">View Details</label>
+        {{ recipe.recipeTitle }} {{ recipe.recipeType }}
+        <label for="existingRecipe" class="btn btn-sm" @click="setRecipeId(recipe.id)">View Details</label>
+        <label class="btn btn-sm" @click="deleterecipe(recipe.id)">Delete</label>
       </div>
     </div>
   </div>
@@ -87,57 +88,47 @@ export default {
   },
   data() {
     return {
-      todos: [],
-      title: "",
+      recipes: [],
+      recipeId: "",
       addRecipeForm: false,
     };
   },
   methods: {
+    setRecipeId(docId) {
+      this.recipeId = docId
+    },
     //
-    async getTodos() {
-      var todosRef = await firebase
+    async getrecipes() {
+      var recipesRef = await firebase
         .firestore()
         .collection("users")
         // .doc(firebase.auth().currentUser.uid)
         .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
         .collection("recipes");
 
-      todosRef.onSnapshot((snap) => {
-        // this.todos = [];
+      recipesRef.onSnapshot((snap) => {
+        this.recipes = [];
         snap.forEach((doc) => {
-          var todo = doc.data();
-          todo.id = doc.id;
-          this.todos.push(todo);
+          var recipe = doc.data();
+          recipe.id = doc.id;
+          this.recipes.push(recipe);
         });
       });
     },
     //
-    addTodo() {
+    deleterecipe(docId) {
       firebase
         .firestore()
         .collection("users")
         // .doc(firebase.auth().currentUser.uid)
         .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
-        .collection("todos")
-        .add({
-          title: this.title,
-          createdAt: new Date(),
-          isCompleted: false,
-        });
-    },
-    deleteTodo(docId) {
-      firebase
-        .firestore()
-        .collection("users")
-        // .doc(firebase.auth().currentUser.uid)
-        .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
-        .collection("todos")
+        .collection("recipes")
         .doc(docId)
         .delete();
     },
   },
   created() {
-    this.getTodos();
+    this.getrecipes();
   },
 };
 </script>
