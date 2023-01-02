@@ -1,25 +1,55 @@
 <template>
-  <div>
-    <input type="text" placeholder="Add Todo" v-model="title" />
-    <div>{{ title }}</div>
-    <button @click="addTodo()" class="px-4 py-2 bg-blue-500 text-white hover:bg-gray-600 rounded-full focus:outline-none">add</button>
-    <div v-for="todo in todos">
-      <p>
-        {{ todo.recipeTitle }} {{ todo.recipeType }}
-        <button @click="deleteTodo(todo.id)" class="px-4 py-2 bg-blue-500 text-white hover:bg-gray-600 rounded-full focus:outline-none">delete</button>
-        <button @click="recipeDetails = !recipeDetails" class="px-4 py-2 bg-blue-500 text-white hover:bg-gray-600 rounded-full focus:outline-none">details</button>
-      </p>
-      <div v-if="recipeDetails">
-        {{ todo.recipeDescription }}
-        <br />
-        <div>
-          <ul v-for="ingredient in todo.ingredients">
-            <li>{{ ingredient }}</li>
-          </ul>
-          <ul v-for="amounts in todo.ingredientsAmounts">
-            <li>{{ amounts }}</li>
-          </ul>
+  <div class="max-w-none">
+    <!-- add recipes -->
+    <div>
+      <AddRecipe/>
+    </div>
+
+    <!-- display all recipes -->
+    <!-- The button to open modal -->
+
+    <!-- Put this part before </body> tag -->
+    <input type="checkbox" id="existingRecipe" class="modal-toggle" />
+    <div class="modal">
+      <div class="modal-box w-11/12 max-w-5xl">
+        <!-- inside modal -->
+        <div v-for="todo in todos" class="flex justify-center mt-8">
+          <div>
+            <label class="block font-bold mb-2 text-gray-700">
+              Recipe Description
+            </label>
+            <p contenteditable="true">{{ todo.recipeDescription }}</p>
+            <br />
+            <div class="flex flex-inline">
+              <div class="">
+                <label class="block font-bold mb-2 text-gray-700">
+                  Ingredients
+                </label>
+                <ul v-for="ingredient in todo.ingredients">
+                  <li contenteditable="true">{{ ingredient }}</li>
+                </ul>
+              </div>
+              <div class="mx-12">
+                <label class="block font-bold mb-2 text-gray-700">
+                  Amount
+                </label>
+                <ul v-for="amounts in todo.ingredientsAmounts">
+                  <li contenteditable="true">{{ amounts }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="modal-action">
+          <label for="existingRecipe" class="btn btn-sm">Close</label>
+        </div>
+      </div>
+    </div>
+
+    <div v-for="todo in todos" class="flex justify-center mt-8">
+      <div>
+        {{ todo.recipeTitle }} {{ todo.recipeType }}
+        <label for="existingRecipe" class="btn btn-sm">View Details</label>
       </div>
     </div>
   </div>
@@ -48,13 +78,18 @@ onBeforeUnmount(() => {
 </script>
 
 <script>
+import AddRecipe from "../components/addRecipe.vue";
+
 export default {
   name: "app",
+  components: {
+    AddRecipe,
+  },
   data() {
     return {
       todos: [],
       title: "",
-      recipeDetails: false,
+      addRecipeForm: false,
     };
   },
   methods: {

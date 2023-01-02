@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "daisyui": "^2.46.0",
     "firebase": "^4.8.0",
     "vue": "^3.2.41",
     "vue-router": "^4.1.6"

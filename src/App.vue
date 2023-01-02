@@ -49,10 +49,10 @@ const signOut = () => {
       </router-link>
       <div class=" md:block text-white">
         <span v-if="isLoggedIn">
-          <router-link to="/feed"> Feed </router-link> |
+          <router-link to="/feed"> Feed </router-link>
         </span>
-        <span v-else>
-          <router-link to="/register"> Register </router-link> |
+        <span v-else class="space-x-4">
+          <router-link to="/register"> Register </router-link>
           <router-link to="/sign-in"> Login </router-link>
         </span>
       </div>
