@@ -23,7 +23,6 @@
               id="recipeTitle"
               type="text"
               placeholder="Recipe Name"
-              ref="recipeTitle"
               v-model="recipe.recipeTitle"
               required
             />
@@ -50,19 +49,30 @@
               v-model="recipe.recipeDescription"
               required
             />
+            <label class="block font-bold mb-2 text-gray-700">
+              Recipe Instructions
+            </label>
+            <input
+              class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+              id="recipeInstructions"
+              type="text"
+              placeholder="Recipe Description"
+              v-model="recipe.recipeInstructions"
+              required
+            />
             <div class="flex flex-inline">
               <div class="">
                 <label class="block font-bold mb-2 text-gray-700">
                   Ingredients
                 </label>
-                <div v-for="ingredient in recipe.ingredients">
+                <div v-for="(ingredient, index) in recipe.ingredients">
                   <input
                     class="w-full px-3 py-2 my-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
                     id="ingredient"
                     type="text"
                     placeholder="Recipe Ingredient"
                     ref="ingredients"
-                    :value="ingredient"
+                    v-model="recipe.ingredients[index]"
                     required
                   />
                 </div>
@@ -71,14 +81,14 @@
                 <label class="block font-bold mb-2 text-gray-700">
                   Amount
                 </label>
-                <ul v-for="amount in recipe.ingredientsAmounts" ref="amount">
+                <ul v-for="(amount, index) in recipe.ingredientsAmounts">
                   <input
                     class="w-full px-3 py-2 my-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
                     id="amount"
                     type="text"
                     placeholder="Recipe Ingredient"
                     ref="amounts"
-                    :value="amount"
+                    v-model="recipe.ingredientsAmounts[index]"
                     required
                   />
                 </ul>
@@ -149,11 +159,13 @@ export default {
     return {
       recipes: [],
       recipeId: "",
+      index: 0,
       // recipeTitle: "",
-      recipeType: "",
-      recipeDescription: "",
-      recipeInstructions: "",
-      recipeTitle: "",
+      // recipeType: "",
+      // recipeDescription: "",
+      // recipeInstructions: "",
+      // ingredientNames: [],
+      // ingredientAmounts: [],
       addRecipeForm: false,
     };
   },
@@ -191,24 +203,31 @@ export default {
         .delete();
     },
     updateRecipe(docId) {
-      console.log(this.recipes[1].recipeTitle);
-      // console.log(this.$refs.amounts.value);
-      // console.log(this.$refs.ingredients.value);
-      // firebase
-      //   .firestore()
-      //   .collection("users")
-      //   // .doc(firebase.auth().currentUser.uid)
-      //   .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
-      //   .collection("recipes")
-      //   .doc(docId)
-      //   .update({
-      //     recipeTitle: this.recipeTitle,
-      //     recipeType: this.recipeType,
-      //     recipeDescription: this.recipeDescription,
-      //     recipeInstructions: this.recipeInstructions,
-      //     ingredients: this.$refs.ingredient.value,
-      //     ingredientsAmounts: this.$refs.amount.value,
-      //   });
+      for (let i = 0; i < this.recipes.length; i++) {
+        if (docId == this.recipes[i].id) {
+          this.index = i
+        }
+      }
+      // console.log(this.recipes[0].recipeType);
+      // console.log(this.recipes[0].recipeDescription);
+      // console.log(this.recipes[0].recipeInstructions);
+      // console.log(Object.values(this.recipes[0].ingredients));
+      // console.log(Object.values(this.recipes[0].ingredientsAmounts));
+      firebase
+        .firestore()
+        .collection("users")
+        // .doc(firebase.auth().currentUser.uid)
+        .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
+        .collection("recipes")
+        .doc(docId)
+        .update({
+          recipeTitle: this.recipes[this.index].recipeTitle,
+          recipeType: this.recipes[this.index].recipeType,
+          recipeDescription: this.recipes[this.index].recipeDescription,
+          recipeInstructions: this.recipes[this.index].recipeInstructions,
+          ingredients: Object.values(this.recipes[this.index].ingredients),
+          ingredientsAmounts: Object.values(this.recipes[this.index].ingredientsAmounts),
+        });
     },
   },
   created() {
