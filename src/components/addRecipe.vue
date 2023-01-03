@@ -12,7 +12,7 @@
         <!-- Add Recipe -->
         <label class="block font-bold mb-2 text-gray-700"> Recipe Name </label>
         <input
-          class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full px-3 py-2 mb-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           id="recipeTitle"
           type="text"
           placeholder="Recipe Name"
@@ -21,7 +21,7 @@
         />
         <label class="block font-bold mb-2 text-gray-700"> Recipe Type </label>
         <input
-          class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full px-3 py-2 mb-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           id="recipeType"
           type="text"
           placeholder="Breakfast, Lunch, Dessert..."
@@ -30,7 +30,7 @@
         />
         <label class="block font-bold mb-2 text-gray-700"> Description </label>
         <textarea
-          class="w-full h-16 px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full h-16 px-3 py-2 mb-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           id="recipeDescription"
           type="text"
           placeholder="Recipe Description"
@@ -42,7 +42,7 @@
         </label>
         <textarea
           id="recipeInstructions"
-          class="w-full h-16 px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full h-16 px-3 py-2 mb-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           type="text"
           placeholder="Recipe Instructions"
           v-model="recipeInstructions"
