@@ -17,6 +17,7 @@
           type="text"
           placeholder="Recipe Name"
           v-model="recipeTitle"
+          required
         />
         <label class="block font-bold mb-2 text-gray-700"> Recipe Type </label>
         <input
@@ -25,6 +26,7 @@
           type="text"
           placeholder="Breakfast, Lunch, Dessert..."
           v-model="recipeType"
+          required
         />
         <label class="block font-bold mb-2 text-gray-700"> Description </label>
         <input
@@ -33,6 +35,7 @@
           type="text"
           placeholder="Recipe Description"
           v-model="recipeDescription"
+          required
         />
         <label class="block font-bold mb-2 text-gray-700">
           Detailed Instructions
@@ -43,6 +46,7 @@
           type="text"
           placeholder="Recipe Instructions"
           v-model="recipeInstructions"
+          required
         ></textarea>
         <div
           class="flex flex-inline space-x-4"
@@ -59,6 +63,7 @@
               type="text"
               class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
               placeholder="Ingredient Name"
+              required
             />
           </div>
           <div class="form-group col-md-6">
@@ -71,6 +76,7 @@
               type="text"
               class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
               placeholder="Ingredient Amount"
+              required
             />
           </div>
           <button
@@ -157,7 +163,7 @@ export default {
           recipeDescription: this.recipeDescription,
           recipeInstructions: this.recipeInstructions,
           ingredients: Object.values(this.ingredientNames),
-          ingredientAmounts: Object.values(this.ingredientAmounts)
+          ingredientsAmounts: Object.values(this.ingredientAmounts)
         });
     },
   },

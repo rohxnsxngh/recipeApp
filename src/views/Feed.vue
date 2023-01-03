@@ -16,25 +16,71 @@
         <div v-for="recipe in recipes" class="flex justify-center mt-8">
           <div v-if="this.recipeId == recipe.id">
             <label class="block font-bold mb-2 text-gray-700">
+              Recipe Title
+            </label>
+            <input
+              class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+              id="recipeTitle"
+              type="text"
+              placeholder="Recipe Name"
+              ref="recipeTitle"
+              v-model="recipe.recipeTitle"
+              required
+            />
+            <label class="block font-bold mb-2 text-gray-700">
+              Recipe Type
+            </label>
+            <input
+              class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+              id="recipeType"
+              type="text"
+              placeholder="Recipe Type"
+              v-model="recipe.recipeType"
+              required
+            />
+            <br />
+            <label class="block font-bold mb-2 text-gray-700">
               Recipe Description
             </label>
-            <p contenteditable="true">{{ recipe.recipeDescription }}</p>
-            <br />
+            <input
+              class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+              id="recipeDescription"
+              type="text"
+              placeholder="Recipe Description"
+              v-model="recipe.recipeDescription"
+              required
+            />
             <div class="flex flex-inline">
               <div class="">
                 <label class="block font-bold mb-2 text-gray-700">
                   Ingredients
                 </label>
-                <ul v-for="ingredient in recipe.ingredients">
-                  <li contenteditable="true">{{ ingredient }}</li>
-                </ul>
+                <div v-for="ingredient in recipe.ingredients">
+                  <input
+                    class="w-full px-3 py-2 my-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+                    id="ingredient"
+                    type="text"
+                    placeholder="Recipe Ingredient"
+                    ref="ingredients"
+                    :value="ingredient"
+                    required
+                  />
+                </div>
               </div>
               <div class="mx-12">
                 <label class="block font-bold mb-2 text-gray-700">
                   Amount
                 </label>
-                <ul v-for="amounts in recipe.ingredientsAmounts">
-                  <li contenteditable="true">{{ amounts }}</li>
+                <ul v-for="amount in recipe.ingredientsAmounts" ref="amount">
+                  <input
+                    class="w-full px-3 py-2 my-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+                    id="amount"
+                    type="text"
+                    placeholder="Recipe Ingredient"
+                    ref="amounts"
+                    :value="amount"
+                    required
+                  />
                 </ul>
               </div>
             </div>
@@ -42,6 +88,12 @@
         </div>
         <div class="modal-action">
           <label for="existingRecipe" class="btn btn-sm">Close</label>
+          <label
+            for="existingRecipe"
+            class="btn btn-sm"
+            @click="updateRecipe(this.recipeId)"
+            >Update Recipe</label
+          >
         </div>
       </div>
     </div>
@@ -49,8 +101,15 @@
     <div v-for="recipe in recipes" class="flex justify-center mt-8">
       <div>
         {{ recipe.recipeTitle }} {{ recipe.recipeType }}
-        <label for="existingRecipe" class="btn btn-sm" @click="setRecipeId(recipe.id)">View Details</label>
-        <label class="btn btn-sm" @click="deleterecipe(recipe.id)">Delete</label>
+        <label
+          for="existingRecipe"
+          class="btn btn-sm"
+          @click="setRecipeId(recipe.id)"
+          >View Details</label
+        >
+        <label class="btn btn-sm" @click="deleteRecipe(recipe.id)"
+          >Delete</label
+        >
       </div>
     </div>
   </div>
@@ -90,15 +149,20 @@ export default {
     return {
       recipes: [],
       recipeId: "",
+      // recipeTitle: "",
+      recipeType: "",
+      recipeDescription: "",
+      recipeInstructions: "",
+      recipeTitle: "",
       addRecipeForm: false,
     };
   },
   methods: {
     setRecipeId(docId) {
-      this.recipeId = docId
+      this.recipeId = docId;
     },
     //
-    async getrecipes() {
+    async getRecipes() {
       var recipesRef = await firebase
         .firestore()
         .collection("users")
@@ -116,7 +180,7 @@ export default {
       });
     },
     //
-    deleterecipe(docId) {
+    deleteRecipe(docId) {
       firebase
         .firestore()
         .collection("users")
@@ -126,9 +190,29 @@ export default {
         .doc(docId)
         .delete();
     },
+    updateRecipe(docId) {
+      console.log(this.recipes[1].recipeTitle);
+      // console.log(this.$refs.amounts.value);
+      // console.log(this.$refs.ingredients.value);
+      // firebase
+      //   .firestore()
+      //   .collection("users")
+      //   // .doc(firebase.auth().currentUser.uid)
+      //   .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
+      //   .collection("recipes")
+      //   .doc(docId)
+      //   .update({
+      //     recipeTitle: this.recipeTitle,
+      //     recipeType: this.recipeType,
+      //     recipeDescription: this.recipeDescription,
+      //     recipeInstructions: this.recipeInstructions,
+      //     ingredients: this.$refs.ingredient.value,
+      //     ingredientsAmounts: this.$refs.amount.value,
+      //   });
+    },
   },
   created() {
-    this.getrecipes();
+    this.getRecipes();
   },
 };
 </script>
