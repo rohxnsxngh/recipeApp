@@ -126,7 +126,7 @@
     <div class="px-8 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">
       <div v-for="recipe in recipes" class="">
         <div
-          class="card card-compact h-full lg:w-80 md:w-60 sm:w-52 w-36 bg-base-100 shadow-xl my-10 mx-auto"
+          class="card card-compact h-full lg:w-80 md:w-60 sm:w-52 w-36 bg-base-100 mb-24 shadow-xl mx-auto"
         >
           <figure>
             <img

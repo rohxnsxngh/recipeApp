@@ -19,7 +19,7 @@ const signOut = () => {
 </script>
 
 <template>
-  <nav class="bg-gray-800 px-4 py-2 flex items-center justify-between">
+  <nav class="bg-green-300 px-4 py-2 flex items-center justify-between">
     <div class="flex items-center">
       <router-link
         to="/"
@@ -29,7 +29,7 @@ const signOut = () => {
       </router-link>
       <div class="md:block text-white">
         <span v-if="isLoggedIn">
-          <router-link to="/feed" class="text-sm"> Feed </router-link>
+          <router-link to="/feed" class="text-md text-white font-semibold hover:text-gray-400 mr-4"> Feed </router-link>
         </span>
         <span v-else class="space-x-4">
           <router-link to="/register"> Register </router-link>
@@ -60,8 +60,8 @@ const signOut = () => {
       </div>
     </div>
   </nav>
-  <router-view />
-  <Footer class="mt-96" />
+  <router-view class=""/>
+  <Footer class="sticky bottom-0" />
 </template>
 
 <script>
