@@ -1,23 +1,3 @@
-<!-- <template>
-  <div class="bg-gray-600">
-    <nav>
-      <router-link to="/"> Home </router-link> |
-      <span v-if="isLoggedIn">
-        <router-link to="/feed"> Feed </router-link> |
-      </span>
-      <span v-if="isLoggedIn"
-        >
-        <button @click="signOut">Logout</button>
-      </span>
-      <span v-else>
-        <router-link to="/register"> Register </router-link> |
-        <router-link to="/sign-in"> Login </router-link>
-      </span>
-    </nav>
-    <router-view />
-  </div>
-</template> -->
-
 <script setup>
 import { ref, watchEffect } from "vue"; // used for conditional rendering
 import firebase from "firebase";
@@ -47,9 +27,9 @@ const signOut = () => {
       >
         Home
       </router-link>
-      <div class=" md:block text-white">
+      <div class="md:block text-white">
         <span v-if="isLoggedIn">
-          <router-link to="/feed"> Feed </router-link>
+          <router-link to="/feed" class="text-sm"> Feed </router-link>
         </span>
         <span v-else class="space-x-4">
           <router-link to="/register"> Register </router-link>
@@ -60,8 +40,8 @@ const signOut = () => {
     <div class="flex items-center">
       <div class="hidden md:block">
         <button
-        v-if="isLoggedIn"
-        @click="signOut"
+          v-if="isLoggedIn"
+          @click="signOut"
           class="px-4 py-2 bg-transparent text-white hover:bg-gray-600 rounded-full focus:outline-none"
         >
           Logout
@@ -81,29 +61,16 @@ const signOut = () => {
     </div>
   </nav>
   <router-view />
-  <!-- <div class="md:hidden" v-if="showMenu">
-    <router-link
-      to="/"
-      class="block py-2 px-4 text-white font-normal bg-gray-800 hover:bg-gray-900 rounded-full focus:outline-none"
-    >
-      Home
-    </router-link>
-    <router-link
-      to="/"
-      class="block py-2 px-4 text-white font-normal bg-gray-800 hover:bg-gray-900 rounded-full focus:outline-none"
-    >
-      Page 2
-    </router-link>
-    <button
-      class="block py-2 px-4 text-white font-normal bg-gray-800 hover:bg-gray-900 rounded-full focus:outline-none"
-    >
-      Button
-    </button>
-  </div> -->
+  <Footer class="mt-96" />
 </template>
 
 <script>
+import Footer from "./components/footer.vue";
+
 export default {
+  components: {
+    Footer,
+  },
   data() {
     return {
       showMenu: false,

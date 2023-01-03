@@ -1,12 +1,3 @@
-<!-- <template>
-  <div class="bg-gray-600">
-    <h1>Create an Account</h1>
-    <p><input type="text" placeholder="Email" v-model="email" /></p>
-    <p><input type="password" placeholder="Password" v-model="password" /></p>
-    <p><button @click="register">Submit</button></p>
-  </div>
-</template> -->
-
 <template>
   <div class="flex justify-center mt-8">
     <div class="w-full max-w-xs bg-white rounded-lg shadow-md p-4 md:p-8">

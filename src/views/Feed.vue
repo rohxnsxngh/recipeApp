@@ -3,6 +3,21 @@
     <!-- add recipes -->
     <div>
       <AddRecipe />
+      <!-- <div class="input mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search"
+          aria-label="Search"
+          v-model="userQuery"
+        />
+        <div class="">
+          <button class="btn btn-outline-secondary" type="button">
+            <span class="material-icons"> search </span>
+            Search
+          </button>
+        </div>
+      </div> -->
     </div>
 
     <!-- display all recipes -->
@@ -107,19 +122,38 @@
         </div>
       </div>
     </div>
-
-    <div v-for="recipe in recipes" class="flex justify-center mt-8">
-      <div>
-        {{ recipe.recipeTitle }} {{ recipe.recipeType }}
-        <label
-          for="existingRecipe"
-          class="btn btn-sm"
-          @click="setRecipeId(recipe.id)"
-          >View Details</label
+    <!-- Cards -->
+    <div class="px-8 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">
+      <div v-for="recipe in recipes" class="">
+        <div
+          class="card card-compact h-full lg:w-80 md:w-60 sm:w-52 w-36 bg-base-100 shadow-xl my-10 mx-auto"
         >
-        <label class="btn btn-sm" @click="deleteRecipe(recipe.id)"
-          >Delete</label
-        >
+          <figure>
+            <img
+              src="https://parade.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTkwNTgxMjkxNjk3NTc5OTAw/istock-1203599963-jpg.jpg"
+              alt="Recipies"
+            />
+          </figure>
+          <div class="card-body">
+            <p class="text-center font-bold sm:text-lg text-sm">
+              {{ recipe.recipeTitle }}
+            </p>
+            <div class="flex flex-inline space-x-1 justify-end">
+              <div class="tooltip" data-tip="edit recipe">
+              <label
+                for="existingRecipe"
+                class="btn btn-xs w-12"
+                @click="setRecipeId(recipe.id)"
+                ><span class="material-icons text-sm"> edit_note </span></label
+              ></div>
+              <div class="tooltip" data-tip="delete recipe">
+                <label class="btn btn-xs w-12" @click="deleteRecipe(recipe.id)"
+                  ><span class="material-icons text-sm"> delete </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -159,15 +193,24 @@ export default {
     return {
       recipes: [],
       recipeId: "",
+      userQuery: "",
       index: 0,
-      // recipeTitle: "",
-      // recipeType: "",
-      // recipeDescription: "",
-      // recipeInstructions: "",
-      // ingredientNames: [],
-      // ingredientAmounts: [],
       addRecipeForm: false,
     };
+  },
+  computed: {
+    filteredSystem() {
+      const self = this;
+      return this.recipes.filter((x) => {
+        return (
+          x.recipeTitle.toLowerCase().indexOf(self.userQuery.toLowerCase()) >=
+            0 ||
+          x.recipeType.toLowerCase().indexOf(self.userQuery.toLowerCase()) >=
+            0 ||
+          x.ingredient.toLowerCase().indexOf(self.userQuery.toLowerCase()) >= 0
+        );
+      });
+    },
   },
   methods: {
     setRecipeId(docId) {
@@ -178,8 +221,8 @@ export default {
       var recipesRef = await firebase
         .firestore()
         .collection("users")
-        // .doc(firebase.auth().currentUser.uid)
-        .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
+        .doc(firebase.auth().currentUser.uid)
+        // .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
         .collection("recipes");
 
       recipesRef.onSnapshot((snap) => {
@@ -196,8 +239,8 @@ export default {
       firebase
         .firestore()
         .collection("users")
-        // .doc(firebase.auth().currentUser.uid)
-        .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
+        .doc(firebase.auth().currentUser.uid)
+        // .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
         .collection("recipes")
         .doc(docId)
         .delete();
@@ -205,7 +248,7 @@ export default {
     updateRecipe(docId) {
       for (let i = 0; i < this.recipes.length; i++) {
         if (docId == this.recipes[i].id) {
-          this.index = i
+          this.index = i;
         }
       }
       // console.log(this.recipes[0].recipeType);
@@ -216,8 +259,8 @@ export default {
       firebase
         .firestore()
         .collection("users")
-        // .doc(firebase.auth().currentUser.uid)
-        .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
+        .doc(firebase.auth().currentUser.uid)
+        // .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
         .collection("recipes")
         .doc(docId)
         .update({
@@ -226,7 +269,9 @@ export default {
           recipeDescription: this.recipes[this.index].recipeDescription,
           recipeInstructions: this.recipes[this.index].recipeInstructions,
           ingredients: Object.values(this.recipes[this.index].ingredients),
-          ingredientsAmounts: Object.values(this.recipes[this.index].ingredientsAmounts),
+          ingredientsAmounts: Object.values(
+            this.recipes[this.index].ingredientsAmounts
+          ),
         });
     },
   },

@@ -29,14 +29,14 @@
           required
         />
         <label class="block font-bold mb-2 text-gray-700"> Description </label>
-        <input
-          class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+        <textarea
+          class="w-full h-16 px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           id="recipeDescription"
           type="text"
           placeholder="Recipe Description"
           v-model="recipeDescription"
           required
-        />
+        ></textarea>
         <label class="block font-bold mb-2 text-gray-700">
           Detailed Instructions
         </label>
@@ -81,15 +81,15 @@
           </div>
           <button
             @click="addIngredient"
-            class="px-4 py-2 mt-10 bg-green-500 text-white hover:bg-gray-600 rounded-full focus:outline-none btn btn-sm"
+            class="px-4 mt-10 bg-green-500 text-white hover:bg-gray-600 rounded-full focus:outline-none btn btn-xs"
           >
-            +
+            <span class="material-icons text-sm"> add </span>
           </button>
           <button
             @click="deleteIngredient"
-            class="px-4 py-2 mt-10 bg-red-500 text-white hover:bg-gray-600 rounded-full focus:outline-none btn btn-sm"
+            class="px-4 mt-10 bg-red-500 text-white hover:bg-gray-600 rounded-full focus:outline-none btn btn-xs"
           >
-            -
+            <span class="material-icons text-sm"> remove </span>
           </button>
         </div>
         <div class="modal-action">
@@ -154,8 +154,8 @@ export default {
       firebase
         .firestore()
         .collection("users")
-        // .doc(firebase.auth().currentUser.uid)
-        .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
+        .doc(firebase.auth().currentUser.uid)
+        // .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
         .collection("recipes")
         .add({
           recipeTitle: this.recipeTitle,
@@ -163,7 +163,7 @@ export default {
           recipeDescription: this.recipeDescription,
           recipeInstructions: this.recipeInstructions,
           ingredients: Object.values(this.ingredientNames),
-          ingredientsAmounts: Object.values(this.ingredientAmounts)
+          ingredientsAmounts: Object.values(this.ingredientAmounts),
         });
     },
   },
