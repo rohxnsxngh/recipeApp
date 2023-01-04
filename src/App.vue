@@ -19,35 +19,41 @@ const signOut = () => {
 </script>
 
 <template>
-  <nav class="bg-green-300 px-4 py-2 flex items-center justify-between">
-    <div class="flex items-center">
-      <router-link
-        to="/"
-        class="text-lg text-white font-semibold hover:text-gray-400 mr-4"
-      >
-        Home
-      </router-link>
-      <div class="md:block text-white">
-        <span v-if="isLoggedIn">
-          <router-link to="/feed" class="text-md text-white font-semibold hover:text-gray-400 mr-4"> Feed </router-link>
-        </span>
-        <span v-else class="space-x-4">
-          <router-link to="/register"> Register </router-link>
-          <router-link to="/sign-in"> Login </router-link>
-        </span>
-      </div>
-    </div>
-    <div class="flex items-center">
-      <div class="hidden md:block">
-        <button
-          v-if="isLoggedIn"
-          @click="signOut"
-          class="px-4 py-2 bg-transparent text-white hover:bg-gray-600 rounded-full focus:outline-none"
+  <div class="h-screen justify-between w-screen overflow-x-hidden">
+    <nav class="bg-turtle-green px-4 py-2 flex items-center justify-between">
+      <div class="flex items-center">
+        <router-link
+          to="/"
+          class="text-lg text-white font-semibold hover:text-black mr-4"
         >
-          Logout
-        </button>
+          Home
+        </router-link>
+        <div class="text-white">
+          <span v-if="isLoggedIn">
+            <router-link
+              to="/feed"
+              class="text-md font-semibold hover:text-black mr-4"
+            >
+              Feed
+            </router-link>
+          </span>
+          <span v-else class="space-x-4">
+            <router-link to="/register"> Register </router-link>
+            <router-link to="/sign-in"> Login </router-link>
+          </span>
+        </div>
       </div>
-      <div class="md:hidden">
+      <div class="flex items-center">
+        <div class="block">
+          <button
+            v-if="isLoggedIn"
+            @click="signOut"
+            class="px-4 py-2 bg-transparent font-bold text-md text-white hover:bg-gray-600 rounded-full focus:outline-none"
+          >
+            Logout
+          </button>
+        </div>
+        <!-- <div class="md:hidden">
         <button
           class="px-4 py-2 bg-transparent text-white hover:bg-gray-600 rounded-full focus:outline-none"
           @click="showMenu = !showMenu"
@@ -57,11 +63,12 @@ const signOut = () => {
             <path v-if="showMenu" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
+      </div> -->
       </div>
-    </div>
-  </nav>
-  <router-view class=""/>
-  <Footer class="sticky bottom-0" />
+    </nav>
+    <router-view class="bg-blue-gray" />
+    <Footer class="fixed bottom-0" />
+  </div>
 </template>
 
 <script>

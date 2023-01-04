@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center mt-8">
-    <div class="w-full max-w-xs bg-white rounded-lg shadow-md p-4 md:p-8">
+    <div class="w-full max-w-xs bg-tan rounded-lg shadow-md p-4 md:p-8">
       <h1 class="text-2xl font-semibold text-gray-800 mb-4">Create an Account</h1>
       <div class="mb-4">
         <label class="block font-bold mb-2 text-gray-700" for="email">

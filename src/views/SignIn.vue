@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center mt-8">
-    <div class="w-full max-w-xs bg-white rounded-lg shadow-md p-4 md:p-8">
+    <div class="w-full max-w-xs bg-tan rounded-lg shadow-md p-4 md:p-8">
       <h1 class="text-2xl font-semibold text-gray-800 mb-4">Login to Your Account</h1>
       <div class="mb-4">
         <p v-if="errMsg" class="text-red-600 text-md">{{ errMsg }}</p>

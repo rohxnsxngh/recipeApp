@@ -1,48 +1,49 @@
 <template>
   <div class="flex justify-center flex-col px-4 py-4">
-    <div class="divider"></div>
-
-    <label for="addNewRecipe" class="btn btn-sm">Add New Recipe</label>
-    <div class="divider"></div>
+    <label
+      for="addNewRecipe"
+      class="btn btn-sm bg-tan font-bold text-black hover:text-white hover:bg-coconut"
+      >Add New Recipe</label
+    >
 
     <!-- Put this part before </body> tag -->
     <input type="checkbox" id="addNewRecipe" class="modal-toggle" />
     <div class="modal">
-      <div class="modal-box w-11/12 max-w-5xl overflow-auto">
+      <div class="modal-box bg-coconut w-11/12 max-w-5xl overflow-auto">
         <!-- Add Recipe -->
-        <label class="block font-bold mb-2 text-gray-700"> Recipe Name </label>
+        <label class="block font-bold mb-2 text-blue-gray"> Recipe Name </label>
         <input
-          class="w-full px-3 py-2 mb-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full px-3 py-2 mb-2 text-blue-gray bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           id="recipeTitle"
           type="text"
           placeholder="Recipe Name"
           v-model="recipeTitle"
           required
         />
-        <label class="block font-bold mb-2 text-gray-700"> Recipe Type </label>
+        <label class="block font-bold mb-2 text-blue-gray"> Recipe Type </label>
         <input
-          class="w-full px-3 py-2 mb-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full px-3 py-2 mb-2 text-blue-gray bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           id="recipeType"
           type="text"
           placeholder="Breakfast, Lunch, Dessert..."
           v-model="recipeType"
           required
         />
-        <label class="block font-bold mb-2 text-gray-700"> Description </label>
+        <label class="block font-bold mb-2 text-blue-gray"> Description </label>
         <textarea
-          class="w-full h-16 px-3 py-2 mb-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full h-16 px-3 py-2 mb-2 text-blue-gray bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           id="recipeDescription"
           type="text"
           placeholder="Recipe Description"
           v-model="recipeDescription"
           required
         ></textarea>
-        <label class="block font-bold mb-2 text-gray-700">
+        <label class="block font-bold mb-2 text-blue-gray">
           Detailed Instructions
         </label>
         <textarea
           id="recipeInstructions"
-          class="w-full h-16 px-3 py-2 mb-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full h-16 px-3 py-2 mb-2 text-blue-gray bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           type="text"
           placeholder="Recipe Instructions"
           v-model="recipeInstructions"
@@ -54,49 +55,54 @@
           :key="index"
         >
           <div class="form-group col-md-6">
-            <label class="block font-bold mb-2 text-gray-700"
-              >Ingredient Name</label
-            >
-            <input
-              v-model="ingredient.ingredientName"
-              :name="`ingredientInfo[${index}][ingredientName]`"
-              type="text"
-              class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
-              placeholder="Ingredient Name"
-              required
-            />
-          </div>
-          <div class="form-group col-md-6">
-            <label class="block font-bold mb-2 text-gray-700"
+            <label class="block font-bold mb-2 text-blue-gray"
               >Ingredient Amount</label
             >
             <input
               v-model="ingredient.ingredientAmount"
               :name="`ingredientInfo[${index}][ingredientAmount]`"
               type="text"
-              class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+              class="w-full px-3 py-2 text-blue-gray bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
               placeholder="Ingredient Amount"
+              required
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label class="block font-bold mb-2 text-blue-gray"
+              >Ingredient Name</label
+            >
+            <input
+              v-model="ingredient.ingredientName"
+              :name="`ingredientInfo[${index}][ingredientName]`"
+              type="text"
+              class="w-full px-3 py-2 text-blue-gray bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+              placeholder="Ingredient Name"
               required
             />
           </div>
           <button
             @click="addIngredient"
-            class="px-4 mt-10 bg-green-500 text-white hover:bg-gray-600 rounded-full focus:outline-none btn btn-xs"
+            class="px-4 mt-10 bg-turtle-green hover:bg-green-500 text-blue-gray hover:bg-gray-600 rounded-full focus:outline-none btn btn-xs"
           >
-            <span class="material-icons text-sm"> add </span>
+            <span class="material-icons text-sm text-white"> add </span>
           </button>
           <button
             @click="deleteIngredient"
-            class="px-4 mt-10 bg-red-500 text-white hover:bg-gray-600 rounded-full focus:outline-none btn btn-xs"
+            class="px-4 mt-10 bg-red-500 text-blue-gray bg-gray-blue hover:bg-red-600 rounded-full focus:outline-none btn btn-xs"
           >
-            <span class="material-icons text-sm"> remove </span>
+            <span class="material-icons text-sm text-white"> remove </span>
           </button>
         </div>
         <div class="modal-action">
-          <label for="addNewRecipe" class="btn btn-sm bg-red-500 text-white"
+          <label
+            for="addNewRecipe"
+            class="btn btn-sm bg-gray-blue hover:bg-red-600 text-white"
             >Cancel</label
           >
-          <label for="addNewRecipe" @click="addRecipe" class="btn btn-sm"
+          <label
+            for="addNewRecipe"
+            @click="addRecipe"
+            class="btn btn-sm bg-turtle-green hover:bg-green-500 text-white"
             >Add Recipe to Collection!</label
           >
         </div>

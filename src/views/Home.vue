@@ -1,12 +1,22 @@
 <template>
-<div class="hero min-h-screen" style="background-image: url(https://placeimg.com/1000/800/arch);">
-  <div class="hero-overlay bg-opacity-60"></div>
-  <div class="hero-content text-center text-neutral-content">
-    <div class="max-w-md">
-      <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
-      <p class="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-      <button class="btn btn-primary">Get Started</button>
+  <div
+    class="hero min-h-screen overflow-hidden"
+    style="
+      background-image: url(https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F44%2F2022%2F11%2F17%2Farticle_291139_the-top-10-healthiest-foods-for-kids_-02.jpg&q=60);
+    "
+  >
+    <div class="hero-overlay bg-opacity-60 overflow-hidden"></div>
+    <div class="hero-content text-center text-neutral-content overflow-hidden">
+      <div class="max-w-md">
+        <h1 class="mb-5 text-5xl font-bold">Welcome</h1>
+        <p class="mb-5">
+          The perfect simple solution for managing a healthier diet, from
+          grocery lists to recipe organization
+        </p>
+        <button class="btn bg-coconut">
+          <router-link to="/register"> Get Started </router-link>
+        </button>
+      </div>
     </div>
   </div>
-</div>
 </template>

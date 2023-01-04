@@ -3,21 +3,6 @@
     <!-- add recipes -->
     <div>
       <AddRecipe />
-      <!-- <div class="input mb-3">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Search"
-          aria-label="Search"
-          v-model="userQuery"
-        />
-        <div class="">
-          <button class="btn btn-outline-secondary" type="button">
-            <span class="material-icons"> search </span>
-            Search
-          </button>
-        </div>
-      </div> -->
     </div>
 
     <!-- display all recipes -->
@@ -123,10 +108,10 @@
       </div>
     </div>
     <!-- Cards -->
-    <div class="px-8 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">
+    <div class="px-4 my-4 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">
       <div v-for="recipe in recipes" class="">
         <div
-          class="card card-compact h-full lg:w-80 md:w-60 sm:w-52 w-36 bg-base-100 mb-24 shadow-xl mx-auto"
+          class="card card-compact text-black hover:bg-coconut hover:text-white hover:-translate-y-6 hover:-translate-x-6 transition duration-700 bg-tan h-full lg:w-80 md:w-60 sm:w-52 w-42 bg-base-100 mb-24 shadow-xl mx-auto"
         >
           <figure>
             <img
@@ -140,12 +125,15 @@
             </p>
             <div class="flex flex-inline space-x-1 justify-end">
               <div class="tooltip" data-tip="edit recipe">
-              <label
-                for="existingRecipe"
-                class="btn btn-xs w-12"
-                @click="setRecipeId(recipe.id)"
-                ><span class="material-icons text-sm"> edit_note </span></label
-              ></div>
+                <label
+                  for="existingRecipe"
+                  class="btn btn-xs w-12"
+                  @click="setRecipeId(recipe.id)"
+                  ><span class="material-icons text-sm">
+                    edit_note
+                  </span></label
+                >
+              </div>
               <div class="tooltip" data-tip="delete recipe">
                 <label class="btn btn-xs w-12" @click="deleteRecipe(recipe.id)"
                   ><span class="material-icons text-sm"> delete </span>
@@ -240,7 +228,6 @@ export default {
         .firestore()
         .collection("users")
         .doc(firebase.auth().currentUser.uid)
-        // .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
         .collection("recipes")
         .doc(docId)
         .delete();
@@ -260,7 +247,6 @@ export default {
         .firestore()
         .collection("users")
         .doc(firebase.auth().currentUser.uid)
-        // .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
         .collection("recipes")
         .doc(docId)
         .update({
