@@ -28,13 +28,25 @@ const signOut = () => {
         >
           Home
         </router-link>
-        <div class="text-white">
+        <router-link
+          to="/about"
+          class="text-md text-white font-semibold hover:text-black mr-4"
+        >
+          About
+        </router-link>
+        <div class="text-white mx-2">
           <span v-if="isLoggedIn">
             <router-link
               to="/feed"
               class="text-md font-semibold hover:text-black mr-4"
             >
               Feed
+            </router-link>
+            <router-link
+              to="/groceries"
+              class="text-md font-semibold hover:text-black mr-4"
+            >
+              Groceries
             </router-link>
           </span>
           <span v-else class="space-x-4">
@@ -66,8 +78,8 @@ const signOut = () => {
       </div> -->
       </div>
     </nav>
-    <router-view class="bg-blue-gray" />
-    <Footer class="fixed bottom-0" />
+    <router-view class="" />
+    <!-- <Footer class="fixed bottom-0 mt-96" /> -->
   </div>
 </template>
 

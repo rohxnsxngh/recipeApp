@@ -108,10 +108,10 @@
       </div>
     </div>
     <!-- Cards -->
-    <div class="px-4 my-4 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">
+    <div class="px-4 mb-10 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">
       <div v-for="recipe in recipes" class="">
         <div
-          class="card card-compact text-black hover:bg-coconut hover:text-white hover:-translate-y-6 hover:-translate-x-6 transition duration-700 bg-tan h-full lg:w-80 md:w-60 sm:w-52 w-42 bg-base-100 mb-24 shadow-xl mx-auto"
+          class="bg-tan card card-compact text-black hover:bg-coconut hover:text-white hover:-translate-y-6 hover:-translate-x-6 transition duration-700 h-full lg:w-80 md:w-60 sm:w-52 w-42 mb-24 shadow-xl mx-auto"
         >
           <figure>
             <img

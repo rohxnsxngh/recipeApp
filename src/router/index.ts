@@ -23,6 +23,16 @@ const router = createRouter({
       name: "feed",
       component: () => import("../views/Feed.vue"),
     },
+    {
+      path: "/about",
+      name: "about",
+      component: () => import("../views/About.vue"),
+    },
+    {
+      path: "/groceries",
+      name: "groceries",
+      component: () => import("../views/Groceries.vue"),
+    },
   ],
 });
 
