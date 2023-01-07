@@ -80,6 +80,7 @@
           >
           <label
             for="existingGrocery"
+            @click="updateGroceries(this.groceryId)"
             class="btn btn-sm bg-gray-blue hover:bg-green-600 text-white"
             >Update Grocery List</label
           >
@@ -176,6 +177,25 @@ export default {
         arr1.pop();
         arr2.pop();
       }
+    },
+    updateGroceries(docId) {
+      for (let i = 0; i < this.groceries.length; i++) {
+        if (docId == this.groceries[i].id) {
+          this.index = i;
+        }
+      }
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(firebase.auth().currentUser.uid)
+        .collection("groceryList")
+        .doc(docId)
+        .update({
+          groceries: Object.values(this.groceries[this.index].groceries),
+          quantities: Object.values(this.groceries[this.index].quantities),
+          isChecked: Object.values(this.groceries[this.index].isChecked),
+          groceryDate: this.groceries[this.index].groceryDate,
+        });
     },
     //
     deleteGroceries(docId) {

@@ -131,7 +131,6 @@ export default {
         .firestore()
         .collection("users")
         .doc(firebase.auth().currentUser.uid)
-        // .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
         .collection("groceryList")
         .add({
           groceries: Object.values(this.groceries),
