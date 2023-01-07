@@ -80,12 +80,16 @@
               required
             />
           </div>
+        </div>
+        <div class="tooltip" data-tip="Add Ingredient">
           <button
             @click="addIngredient"
-            class="px-4 mt-10 bg-turtle-green hover:bg-green-500 text-blue-gray hover:bg-gray-600 rounded-full focus:outline-none btn btn-xs"
+            class="px-4 mr-4 mt-10 bg-turtle-green hover:bg-green-500 text-blue-gray hover:bg-gray-600 rounded-full focus:outline-none btn btn-xs"
           >
             <span class="material-icons text-sm text-white"> add </span>
           </button>
+        </div>
+        <div class="tooltip" data-tip="Delete Ingredient">
           <button
             @click="deleteIngredient"
             class="px-4 mt-10 bg-red-500 text-blue-gray bg-gray-blue hover:bg-red-600 rounded-full focus:outline-none btn btn-xs"

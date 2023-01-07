@@ -11,11 +11,11 @@
     <!-- Put this part before </body> tag -->
     <input type="checkbox" id="existingRecipe" class="modal-toggle" />
     <div class="modal">
-      <div class="modal-box w-11/12 max-w-5xl">
+      <div class="modal-box bg-coconut w-11/12 max-w-5xl">
         <!-- inside modal -->
         <div v-for="recipe in recipes" class="flex justify-center mt-8">
           <div v-if="this.recipeId == recipe.id">
-            <label class="block font-bold mb-2 text-gray-700">
+            <label class="block font-bold mb-2 text-blue-gray">
               Recipe Title
             </label>
             <input
@@ -26,7 +26,7 @@
               v-model="recipe.recipeTitle"
               required
             />
-            <label class="block font-bold mb-2 text-gray-700">
+            <label class="block font-bold mb-2 text-blue-gray">
               Recipe Type
             </label>
             <input
@@ -38,7 +38,7 @@
               required
             />
             <br />
-            <label class="block font-bold mb-2 text-gray-700">
+            <label class="block font-bold mb-2 text-blue-gray">
               Recipe Description
             </label>
             <input
@@ -49,7 +49,7 @@
               v-model="recipe.recipeDescription"
               required
             />
-            <label class="block font-bold mb-2 text-gray-700">
+            <label class="block font-bold mb-2 text-blue-gray">
               Recipe Instructions
             </label>
             <input
@@ -62,7 +62,7 @@
             />
             <div class="flex flex-inline">
               <div class="">
-                <label class="block font-bold mb-2 text-gray-700">
+                <label class="block font-bold my-4 text-blue-gray">
                   Ingredients
                 </label>
                 <div v-for="(ingredient, index) in recipe.ingredients">
@@ -78,7 +78,7 @@
                 </div>
               </div>
               <div class="mx-12">
-                <label class="block font-bold mb-2 text-gray-700">
+                <label class="block font-bold my-4 text-blue-gray">
                   Amount
                 </label>
                 <ul v-for="(amount, index) in recipe.ingredientsAmounts">
@@ -97,10 +97,14 @@
           </div>
         </div>
         <div class="modal-action">
-          <label for="existingRecipe" class="btn btn-sm">Close</label>
           <label
             for="existingRecipe"
-            class="btn btn-sm"
+            class="btn btn-sm bg-gray-blue hover:bg-red-600 text-white"
+            >Close</label
+          >
+          <label
+            for="existingRecipe"
+            class="btn btn-sm bg-gray-blue hover:bg-green-600 text-white"
             @click="updateRecipe(this.recipeId)"
             >Update Recipe</label
           >
@@ -109,36 +113,33 @@
     </div>
     <!-- Cards -->
     <div class="px-4 mb-10 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">
-      <div v-for="recipe in recipes" class="">
-        <div
-          class="bg-tan card card-compact text-black hover:bg-coconut hover:text-white hover:-translate-y-6 hover:-translate-x-6 transition duration-700 h-full lg:w-80 md:w-60 sm:w-52 w-42 mb-24 shadow-xl mx-auto"
-        >
-          <figure>
-            <img
-              src="https://parade.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTkwNTgxMjkxNjk3NTc5OTAw/istock-1203599963-jpg.jpg"
-              alt="Recipies"
-            />
-          </figure>
-          <div class="card-body">
-            <p class="text-center font-bold sm:text-lg text-sm">
-              {{ recipe.recipeTitle }}
-            </p>
-            <div class="flex flex-inline space-x-1 justify-end">
-              <div class="tooltip" data-tip="edit recipe">
-                <label
-                  for="existingRecipe"
-                  class="btn btn-xs w-12"
-                  @click="setRecipeId(recipe.id)"
-                  ><span class="material-icons text-sm">
-                    edit_note
-                  </span></label
-                >
-              </div>
-              <div class="tooltip" data-tip="delete recipe">
-                <label class="btn btn-xs w-12" @click="deleteRecipe(recipe.id)"
-                  ><span class="material-icons text-sm"> delete </span>
-                </label>
-              </div>
+      <div
+        v-for="recipe in recipes"
+        class="bg-tan card card-compact text-black hover:bg-coconut hover:text-white hover:-translate-y-6 hover:-translate-x-6 transition duration-700 h-full lg:w-80 md:w-60 sm:w-52 w-42 mb-24 shadow-xl mx-auto"
+      >
+        <figure>
+          <img
+            src="https://parade.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTkwNTgxMjkxNjk3NTc5OTAw/istock-1203599963-jpg.jpg"
+            alt="Recipies"
+          />
+        </figure>
+        <div class="card-body">
+          <p class="text-center font-bold sm:text-lg text-sm">
+            {{ recipe.recipeTitle }}
+          </p>
+          <div class="flex flex-inline space-x-1 justify-end">
+            <div class="tooltip" data-tip="edit recipe">
+              <label
+                for="existingRecipe"
+                class="btn btn-xs w-12"
+                @click="setRecipeId(recipe.id)"
+                ><span class="material-icons text-sm"> edit_note </span></label
+              >
+            </div>
+            <div class="tooltip" data-tip="delete recipe">
+              <label class="btn btn-xs w-12" @click="deleteRecipe(recipe.id)"
+                ><span class="material-icons text-sm"> delete </span>
+              </label>
             </div>
           </div>
         </div>
@@ -238,11 +239,6 @@ export default {
           this.index = i;
         }
       }
-      // console.log(this.recipes[0].recipeType);
-      // console.log(this.recipes[0].recipeDescription);
-      // console.log(this.recipes[0].recipeInstructions);
-      // console.log(Object.values(this.recipes[0].ingredients));
-      // console.log(Object.values(this.recipes[0].ingredientsAmounts));
       firebase
         .firestore()
         .collection("users")
