@@ -9,7 +9,7 @@
         <div class="flex flex-col">
           <div v-for="grocery in groceries" class="justify-center mt-8">
             <div v-if="this.groceryId == grocery.id">
-              <div>{{ grocery.groceryDate }}</div>
+              <div>{{ grocery.groceryDate.toLocaleDateString() }}</div>
               <div class="columns-3 gap-x-5">
                 <div v-for="(quantity, index) in grocery.quantities">
                   <input
@@ -95,12 +95,10 @@
         class="bg-tan card card-compact text-black hover:bg-coconut hover:text-white hover:-translate-y-6 hover:-translate-x-6 transition duration-700 h-full lg:w-80 md:w-60 sm:w-52 w-42 mb-24 shadow-xl mx-auto"
         v-for="grocery in groceries"
       >
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-        </figure>
+      <span class="material-icons text-center text-9xl"> menu_book </span>
         <div class="card-body">
           <p class="text-center font-bold sm:text-lg text-sm">
-            {{ grocery.groceryDate }}
+            {{ grocery.groceryDate.toLocaleDateString() }}
           </p>
           <div class="flex flex-inline space-x-1 justify-end">
             <div class="tooltip" data-tip="edit grocery list">

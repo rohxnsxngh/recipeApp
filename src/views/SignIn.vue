@@ -69,7 +69,6 @@ const signIn = () => {
     .auth()
     .signInWithEmailAndPassword(email.value, password.value)
     .then((data) => {
-      console.log("Successfully logged in!");
       router.push("/feed");
     })
     .catch((error) => {

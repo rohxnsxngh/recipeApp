@@ -19,7 +19,7 @@ const signOut = () => {
 </script>
 
 <template>
-  <div class="h-screen justify-between w-screen overflow-x-hidden">
+  <div class="h-screen bg-yellow-600 justify-between w-screen overflow-x-hidden">
     <nav class="bg-turtle-green px-4 py-2 flex items-center justify-between">
       <div class="flex items-center">
         <router-link
@@ -78,7 +78,7 @@ const signOut = () => {
       </div> -->
       </div>
     </nav>
-    <router-view class="" />
+    <router-view class="bg-yellow-600" />
     <!-- <Footer class="fixed bottom-0 mt-96" /> -->
   </div>
 </template>

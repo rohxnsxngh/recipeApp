@@ -13,9 +13,9 @@
           The perfect simple solution for managing a healthier diet, from
           grocery lists to recipe organization
         </p>
-        <button class="btn bg-coconut">
-          <router-link to="/register"> Get Started </router-link>
-        </button>
+        <router-link to="/about" class="btn glass text-black hover:text-white bg-coconut">
+          Get Started
+        </router-link>
       </div>
     </div>
   </div>
