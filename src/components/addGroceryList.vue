@@ -22,7 +22,7 @@
               v-model="ingredient.groceryAmount"
               :name="`groceryInfo[${index}][groceryAmount]`"
               type="text"
-              class="w-full px-3 py-2 text-blue-gray bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+              class="w-full px-3 py-2 text-black bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
               placeholder="Quantity"
               required
             />
@@ -33,7 +33,7 @@
               v-model="ingredient.groceryName"
               :name="`groceryInfo[${index}][groceryName]`"
               type="text"
-              class="w-full px-3 py-2 text-blue-gray bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+              class="w-full px-3 py-2 text-black bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
               placeholder="Grocery"
               required
             />
@@ -51,13 +51,13 @@
           </div>
         </div>
         <button
-          @click="addGrocery"
+          @click="addGrocery()"
           class="px-4 mr-4 mt-10 bg-turtle-green hover:bg-green-500 text-blue-gray hover:bg-gray-600 rounded-full focus:outline-none btn btn-xs"
         >
           <span class="material-icons text-sm text-white"> add </span>
         </button>
         <button
-          @click="deleteGrocery"
+          @click="deleteGrocery()"
           class="px-4 mt-10 bg-red-500 text-blue-gray bg-gray-blue hover:bg-red-600 rounded-full focus:outline-none btn btn-xs"
         >
           <span class="material-icons text-sm text-white"> remove </span>
@@ -70,7 +70,7 @@
           >
           <label
             for="addNewGrocery"
-            @click="addGroceries"
+            @click="addGroceries()"
             class="btn btn-sm bg-turtle-green hover:bg-green-500 text-white"
             >Add Recipe to Collection!</label
           >
@@ -116,15 +116,11 @@ export default {
       return;
     },
     addGroceries() {
-      const data = {
-        groceryInfo: this.groceryInfo,
-      };
-      const json = JSON.stringify(data, null, 2);
       this.groceries = this.groceryInfo.map((grocery) => grocery.groceryName);
       this.quantities = this.groceryInfo.map(
         (grocery) => grocery.groceryAmount
       );
-      this.quantities = this.groceryInfo.map(
+      this.isChecked = this.groceryInfo.map(
         (grocery) => grocery.groceryBoolean
       );
       firebase

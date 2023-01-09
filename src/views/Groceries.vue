@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-none">
     <div>
-      <addgroceryList />
+      <addGroceryList />
     </div>
     <input type="checkbox" id="existingGrocery" class="modal-toggle" />
     <div class="modal">
@@ -9,7 +9,9 @@
         <div class="flex flex-col">
           <div v-for="grocery in groceries" class="justify-center mt-8">
             <div v-if="this.groceryId == grocery.id">
-              <div>{{ grocery.groceryDate.toLocaleDateString() }}</div>
+              <div class="font-semibold">
+                Grocery List for: {{ grocery.groceryDate.toLocaleDateString() }}
+              </div>
               <div class="columns-3 gap-x-5">
                 <div v-for="(quantity, index) in grocery.quantities">
                   <input
@@ -47,7 +49,7 @@
               </div>
               <button
                 @click="
-                  addgrocery(
+                  addGroceryArray(
                     grocery.quantities,
                     grocery.groceries,
                     grocery.isChecked
@@ -95,9 +97,10 @@
         class="bg-tan card card-compact text-black hover:bg-coconut hover:text-white hover:-translate-y-6 hover:-translate-x-6 transition duration-700 h-full lg:w-80 md:w-60 sm:w-52 w-42 mb-24 shadow-xl mx-auto"
         v-for="grocery in groceries"
       >
-      <span class="material-icons text-center text-9xl"> menu_book </span>
+        <span class="material-icons text-center text-9xl"> menu_book </span>
         <div class="card-body">
           <p class="text-center font-bold sm:text-lg text-sm">
+            Grocery List for: <br />
             {{ grocery.groceryDate.toLocaleDateString() }}
           </p>
           <div class="flex flex-inline space-x-1 justify-end">
@@ -146,12 +149,12 @@ onBeforeUnmount(() => {
 </script>
 
 <script>
-import addgroceryList from "../components/addgroceryList.vue";
+import addGroceryList from "../components/addGroceryList.vue";
 
 export default {
   name: "app",
   components: {
-    addgroceryList,
+    addGroceryList,
   },
   data() {
     return {
@@ -164,7 +167,7 @@ export default {
     setGroceryId(docId) {
       this.groceryId = docId;
     },
-    addgrocery(arr, arr1, arr2) {
+    addGroceryArray(arr, arr1, arr2) {
       arr.push("");
       arr1.push("");
       arr2.push("");

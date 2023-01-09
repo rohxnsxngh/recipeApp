@@ -27,6 +27,28 @@
               required
             />
             <label class="block font-bold mb-2 text-blue-gray">
+              Recipe Preparation Time
+            </label>
+            <input
+              class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+              id="recipeTitle"
+              type="text"
+              placeholder="Recipe Prep Time"
+              v-model="recipe.prepTime"
+              required
+            />
+            <label class="block font-bold mb-2 text-blue-gray">
+              Recipe Time to Cook
+            </label>
+            <input
+              class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+              id="recipeTitle"
+              type="text"
+              placeholder="Recipe Cooking Time"
+              v-model="recipe.cookTime"
+              required
+            />
+            <label class="block font-bold mb-2 text-blue-gray">
               Recipe Type
             </label>
             <input
@@ -248,6 +270,8 @@ export default {
         .update({
           recipeTitle: this.recipes[this.index].recipeTitle,
           recipeType: this.recipes[this.index].recipeType,
+          prepTime: this.recipes[this.index].prepTime,
+          cookTime: this.recipes[this.index].cookTime,
           recipeDescription: this.recipes[this.index].recipeDescription,
           recipeInstructions: this.recipes[this.index].recipeInstructions,
           ingredients: Object.values(this.recipes[this.index].ingredients),
