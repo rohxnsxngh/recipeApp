@@ -127,7 +127,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import firebase from "firebase";
 import { useRouter } from "vue-router";
 import { onBeforeUnmount } from "vue";
@@ -212,7 +211,6 @@ export default {
         .firestore()
         .collection("users")
         .doc(firebase.auth().currentUser.uid)
-        // .doc("0OqFWbAK5hQIwDFTES6Gh7dEZMt2")
         .collection("groceryList");
 
       groceriesRef.onSnapshot((snap) => {

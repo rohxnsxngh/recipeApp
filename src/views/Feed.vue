@@ -4,17 +4,16 @@
     <div>
       <AddRecipe />
     </div>
-
     <!-- display all recipes -->
     <!-- The button to open modal -->
-
     <!-- Put this part before </body> tag -->
     <input type="checkbox" id="existingRecipe" class="modal-toggle" />
     <div class="modal">
       <div class="modal-box bg-coconut w-11/12 max-w-5xl">
         <!-- inside modal -->
         <div v-for="recipe in recipes" class="flex justify-center mt-8">
-          <div v-if="(this.recipeId == recipe.id) && (recipes.length > 0)">
+          <!-- <div v-if="this.recipeId == recipe.id"> -->
+            <div>
             <label class="block font-bold mb-2 text-blue-gray">
               Recipe Title
             </label>
@@ -171,7 +170,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import firebase from "firebase";
 import { useRouter } from "vue-router";
 import { onBeforeUnmount } from "vue";
@@ -281,7 +279,7 @@ export default {
         });
     },
   },
-  mounted() {
+  created() {
     this.getRecipes();
   },
 };
