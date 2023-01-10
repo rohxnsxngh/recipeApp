@@ -9,7 +9,7 @@
     <!-- Put this part before </body> tag -->
     <input type="checkbox" id="existingRecipe" class="modal-toggle" />
     <div class="modal">
-      <div class="modal-box bg-coconut w-11/12 max-w-5xl">
+      <div class="modal-box bg-coconut w-11/12 max-w-6xl">
         <!-- inside modal -->
         <div v-for="recipe in recipes" class="flex justify-center mt-8">
           <div v-if="showRecipeId(recipe.id)">
@@ -114,9 +114,22 @@
                 </ul>
               </div>
             </div>
+            <div class="modal-action">
+              <label
+                for="existingRecipe"
+                class="btn btn-sm bg-gray-blue hover:bg-red-600 text-white"
+                >Close</label
+              >
+              <label
+                for="existingRecipe"
+                class="btn btn-sm bg-gray-blue hover:bg-green-600 text-white"
+                @click="updateRecipe(recipe.id)"
+                >Update Recipe</label
+              >
+            </div>
           </div>
         </div>
-        <div class="modal-action">
+        <!-- <div class="modal-action">
           <label
             for="existingRecipe"
             class="btn btn-sm bg-gray-blue hover:bg-red-600 text-white"
@@ -128,7 +141,7 @@
             @click="updateRecipe(this.recipeId)"
             >Update Recipe</label
           >
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- Cards -->
@@ -223,14 +236,13 @@ export default {
   methods: {
     setRecipeId(docId) {
       this.recipeId = docId;
-      return;
+      return this.recipeId;
     },
     showRecipeId(docId) {
       if (this.recipeId == docId) {
-        return true
-      }
-      else {
-        return false
+        return true;
+      } else {
+        return false;
       }
     },
     //

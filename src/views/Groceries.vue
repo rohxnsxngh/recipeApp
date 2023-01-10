@@ -71,21 +71,21 @@
               >
                 <span class="material-icons text-sm text-white"> remove </span>
               </button>
+              <div class="modal-action">
+                <label
+                  for="existingGrocery"
+                  class="btn btn-sm bg-gray-blue hover:bg-red-600 text-white"
+                  >Close</label
+                >
+                <label
+                  for="existingGrocery"
+                  @click="updateGroceries(grocery.id)"
+                  class="btn btn-sm bg-gray-blue hover:bg-green-600 text-white"
+                  >Update Grocery List</label
+                >
+              </div>
             </div>
           </div>
-        </div>
-        <div class="modal-action">
-          <label
-            for="existingGrocery"
-            class="btn btn-sm bg-gray-blue hover:bg-red-600 text-white"
-            >Close</label
-          >
-          <label
-            for="existingGrocery"
-            @click="updateGroceries(this.groceryId)"
-            class="btn btn-sm bg-gray-blue hover:bg-green-600 text-white"
-            >Update Grocery List</label
-          >
         </div>
       </div>
     </div>
@@ -167,10 +167,9 @@ export default {
     },
     showGroceryId(docId) {
       if (this.groceryId == docId) {
-        return true
-      }
-      else {
-        return false
+        return true;
+      } else {
+        return false;
       }
     },
     addGroceryArray(arr, arr1, arr2) {
