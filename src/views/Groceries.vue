@@ -8,7 +8,7 @@
       <div class="modal-box w-11/12 max-w-5xl">
         <div class="flex flex-col">
           <div v-for="grocery in groceries" class="justify-center mt-8">
-            <div v-if="this.groceryId == grocery.id">
+            <div v-if="showGroceryId(grocery.id)">
               <div class="font-semibold">
                 Grocery List for: {{ grocery.groceryDate.toLocaleDateString() }}
               </div>
@@ -164,6 +164,14 @@ export default {
   methods: {
     setGroceryId(docId) {
       this.groceryId = docId;
+    },
+    showGroceryId(docId) {
+      if (this.groceryId == docId) {
+        return true
+      }
+      else {
+        return false
+      }
     },
     addGroceryArray(arr, arr1, arr2) {
       arr.push("");
