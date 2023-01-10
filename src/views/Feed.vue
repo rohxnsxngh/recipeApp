@@ -226,6 +226,7 @@ export default {
   methods: {
     setRecipeId(docId) {
       this.recipeId = docId;
+      return this.recipeId
     },
     //
     async getRecipes() {
