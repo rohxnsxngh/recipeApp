@@ -12,7 +12,7 @@
       <div class="modal-box bg-coconut w-11/12 max-w-5xl">
         <!-- inside modal -->
         <div v-for="recipe in recipes" class="flex justify-center mt-8">
-          <div v-if="this.recipeId == recipe.id">
+          <div v-if="showRecipeId(recipe.id)">
             <label class="block font-bold mb-2 text-blue-gray">
               Recipe Title
             </label>
@@ -169,6 +169,7 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import firebase from "firebase";
 import { useRouter } from "vue-router";
 import { onBeforeUnmount } from "vue";
@@ -222,7 +223,15 @@ export default {
   methods: {
     setRecipeId(docId) {
       this.recipeId = docId;
-      return this.recipeId;
+      return;
+    },
+    showRecipeId(docId) {
+      if (this.recipeId == docId) {
+        return true
+      }
+      else {
+        return false
+      }
     },
     //
     async getRecipes() {
@@ -280,7 +289,6 @@ export default {
   },
   created() {
     this.getRecipes();
-    this.recipeId = "";
   },
 };
 </script>
