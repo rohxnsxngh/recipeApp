@@ -145,6 +145,7 @@ export default {
   data() {
     return {
       todos: [],
+      recipeId: "",
       recipeTitle: "",
       recipeType: "",
       prepTime: "",
