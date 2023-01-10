@@ -203,7 +203,7 @@ export default {
   data() {
     return {
       recipes: [],
-      recipeId: "",
+      recipeId: null,
       userQuery: "",
       index: 0,
       addRecipeForm: false,
