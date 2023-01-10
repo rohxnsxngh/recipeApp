@@ -141,7 +141,6 @@
 import firebase from "firebase";
 
 export default {
-  name: "app",
   data() {
     return {
       todos: [],

@@ -152,7 +152,6 @@ onBeforeUnmount(() => {
 import addGroceryList from "../components/addGroceryList.vue";
 
 export default {
-  name: "app",
   components: {
     addGroceryList,
   },
