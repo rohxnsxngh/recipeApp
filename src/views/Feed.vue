@@ -12,8 +12,7 @@
       <div class="modal-box bg-coconut w-11/12 max-w-5xl">
         <!-- inside modal -->
         <div v-for="recipe in recipes" class="flex justify-center mt-8">
-          <!-- <div v-if="this.recipeId == recipe.id"> -->
-            <div>
+          <div v-if="this.recipeId == recipe.id">
             <label class="block font-bold mb-2 text-blue-gray">
               Recipe Title
             </label>
@@ -223,7 +222,7 @@ export default {
   methods: {
     setRecipeId(docId) {
       this.recipeId = docId;
-      return this.recipeId
+      return this.recipeId;
     },
     //
     async getRecipes() {
@@ -281,6 +280,7 @@ export default {
   },
   created() {
     this.getRecipes();
+    this.recipeId = "";
   },
 };
 </script>
