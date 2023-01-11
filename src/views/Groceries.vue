@@ -62,7 +62,7 @@
                     grocery.isChecked
                   )
                 "
-                class="px-4 mr-4 mt-10 bg-turtle-green hover:bg-green-500 text-blue-gray hover:bg-gray-600 rounded-full focus:outline-none btn btn-xs"
+                class="px-4 mr-4 mt-4 bg-turtle-green hover:bg-green-500 text-blue-gray hover:bg-gray-600 rounded-full focus:outline-none btn btn-xs"
               >
                 <span class="material-icons text-sm text-white"> add </span>
               </button>
@@ -74,7 +74,7 @@
                     grocery.isChecked
                   )
                 "
-                class="px-4 mt-10 bg-red-500 text-blue-gray bg-gray-blue hover:bg-red-600 rounded-full focus:outline-none btn btn-xs"
+                class="px-4 mt-4 bg-red-500 text-blue-gray bg-gray-blue hover:bg-red-600 rounded-full focus:outline-none btn btn-xs"
               >
                 <span class="material-icons text-sm text-white"> remove </span>
               </button>
@@ -107,7 +107,7 @@
               <div class="stat">
                 <div class="stat-title">Energy</div>
                 <div class="stat-value">
-                  {{ groceryStats.parsed[0].food.nutrients.ENERC_KCAL }}
+                  {{ groceryStats.parsed[index].food.nutrients.ENERC_KCAL }}
                 </div>
                 <div class="stat-desc">Energy (kilocalorie)</div>
               </div>
@@ -115,7 +115,7 @@
               <div class="stat">
                 <div class="stat-title">Protein</div>
                 <div class="stat-value">
-                  {{ groceryStats.parsed[0].food.nutrients.PROCNT }}
+                  {{ groceryStats.parsed[index].food.nutrients.PROCNT }}
                 </div>
                 <div class="stat-desc">Amount of Protein (grams)</div>
               </div>
@@ -123,7 +123,7 @@
               <div class="stat">
                 <div class="stat-title">Fat</div>
                 <div class="stat-value">
-                  {{ groceryStats.parsed[0].food.nutrients.FAT }}
+                  {{ groceryStats.parsed[index].food.nutrients.FAT }}
                 </div>
                 <div class="stat-desc">Total Lipids (grams)</div>
               </div>
@@ -131,7 +131,7 @@
               <div class="stat">
                 <div class="stat-title">Carbohydrate</div>
                 <div class="stat-value">
-                  {{ groceryStats.parsed[0].food.nutrients.CHOCDF }}
+                  {{ groceryStats.parsed[index].food.nutrients.CHOCDF }}
                 </div>
                 <div class="stat-desc">Carbohydrate by Difference (grams)</div>
               </div>
@@ -139,7 +139,7 @@
               <div class="stat">
                 <div class="stat-title">Fiber</div>
                 <div class="stat-value">
-                  {{ groceryStats.parsed[0].food.nutrients.FIBTG }}
+                  {{ groceryStats.parsed[index].food.nutrients.FIBTG }}
                 </div>
                 <div class="stat-desc">Total Dietary Fiber (grams)</div>
               </div>
@@ -224,7 +224,7 @@ export default {
   },
   methods: {
     //
-    fetchData(payload) {
+    async fetchData(payload) {
       // console.log(payload);
       const options = {
         method: "GET",
