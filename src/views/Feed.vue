@@ -61,25 +61,26 @@
             <label class="block font-bold mb-2 text-blue-gray">
               Recipe Description
             </label>
-            <input
-              class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+            <textarea
+            class="w-full touch-pan-y h-3/6 px-3 py-2 mb-2 text-black bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
               id="recipeDescription"
               type="text"
               placeholder="Recipe Description"
               v-model="recipe.recipeDescription"
               required
-            />
+            ></textarea>
             <label class="block font-bold mb-2 text-blue-gray">
               Recipe Instructions
             </label>
-            <input
-              class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+            <textarea
+              class="w-full touch-pan-y h-3/6 object-cover px-3 py-2 mb-2 text-black bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
               id="recipeInstructions"
               type="text"
               placeholder="Recipe Description"
               v-model="recipe.recipeInstructions"
               required
-            />
+            >
+            </textarea>
             <div class="flex flex-inline">
               <div class="">
                 <label class="block font-bold my-4 text-blue-gray">

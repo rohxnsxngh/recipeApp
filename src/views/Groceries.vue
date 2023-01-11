@@ -80,6 +80,7 @@
               </button>
               <div class="modal-action">
                 <label
+                  @click="isLoading = false"
                   for="existingGrocery"
                   class="btn btn-sm bg-gray-blue hover:bg-red-600 text-white"
                   >Close</label
@@ -225,19 +226,19 @@ export default {
   },
   computed: {
     ENERC_KCAL() {
-      return this.groceryStats.parsed[this.index].food.nutrients.ENERC_KCAL
+      return this.groceryStats.parsed[this.index].food.nutrients.ENERC_KCAL;
     },
     PROCNT() {
-      return this.groceryStats.parsed[this.index].food.nutrients.PROCNT
+      return this.groceryStats.parsed[this.index].food.nutrients.PROCNT;
     },
     FAT() {
-      return this.groceryStats.parsed[this.index].food.nutrients.FAT
+      return this.groceryStats.parsed[this.index].food.nutrients.FAT;
     },
     CHOCDF() {
-      return this.groceryStats.parsed[this.index].food.nutrients.CHOCDF
+      return this.groceryStats.parsed[this.index].food.nutrients.CHOCDF;
     },
     FIBTG() {
-      return this.groceryStats.parsed[this.index].food.nutrients.FIBTG
+      return this.groceryStats.parsed[this.index].food.nutrients.FIBTG;
     },
   },
   methods: {

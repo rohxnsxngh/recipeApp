@@ -19,7 +19,7 @@ const signOut = () => {
 </script>
 
 <template>
-  <div class="h-screen bg-yellow-600 justify-between w-screen overflow-x-hidden">
+  <div class="h-screen bg-gradient-to-r from-yellow-500 via-turtle-green to-coconut justify-between w-screen overflow-x-hidden">
     <nav class="bg-turtle-green px-4 py-2 flex items-center justify-between">
       <div class="flex items-center">
         <router-link
@@ -65,21 +65,10 @@ const signOut = () => {
             Logout
           </button>
         </div>
-        <!-- <div class="md:hidden">
-        <button
-          class="px-4 py-2 bg-transparent text-white hover:bg-gray-600 rounded-full focus:outline-none"
-          @click="showMenu = !showMenu"
-        >
-          <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24" fill="white">
-            <path v-if="!showMenu" d="M4 6h16M4 12h16M4 18h16" />
-            <path v-if="showMenu" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div> -->
       </div>
     </nav>
-    <router-view class="bg-yellow-600" />
-    <!-- <Footer class="fixed bottom-0 mt-96" /> -->
+    <router-view class="bg-gradient-to-r from-yellow-500 via-turtle-green to-coconut" />
+    <Footer class="fixed bottom-0 mt-96" />
   </div>
 </template>
 
