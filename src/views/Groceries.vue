@@ -103,11 +103,12 @@
             </div>
             <div
               class="stats stats-vertical lg:stats-horizontal shadow text-center"
+              v-if="groceryStats.parsed"
             >
               <div class="stat">
                 <div class="stat-title">Energy</div>
                 <div class="stat-value">
-                  {{ groceryStats.parsed[index].food.nutrients.ENERC_KCAL }}
+                  {{ ENERC_KCAL }}
                 </div>
                 <div class="stat-desc">Energy (kilocalorie)</div>
               </div>
@@ -115,7 +116,7 @@
               <div class="stat">
                 <div class="stat-title">Protein</div>
                 <div class="stat-value">
-                  {{ groceryStats.parsed[index].food.nutrients.PROCNT }}
+                  {{ PROCNT }}
                 </div>
                 <div class="stat-desc">Amount of Protein (grams)</div>
               </div>
@@ -123,7 +124,7 @@
               <div class="stat">
                 <div class="stat-title">Fat</div>
                 <div class="stat-value">
-                  {{ groceryStats.parsed[index].food.nutrients.FAT }}
+                  {{ FAT }}
                 </div>
                 <div class="stat-desc">Total Lipids (grams)</div>
               </div>
@@ -131,7 +132,7 @@
               <div class="stat">
                 <div class="stat-title">Carbohydrate</div>
                 <div class="stat-value">
-                  {{ groceryStats.parsed[index].food.nutrients.CHOCDF }}
+                  {{ CHOCDF }}
                 </div>
                 <div class="stat-desc">Carbohydrate by Difference (grams)</div>
               </div>
@@ -139,7 +140,7 @@
               <div class="stat">
                 <div class="stat-title">Fiber</div>
                 <div class="stat-value">
-                  {{ groceryStats.parsed[index].food.nutrients.FIBTG }}
+                  {{ FIBTG }}
                 </div>
                 <div class="stat-desc">Total Dietary Fiber (grams)</div>
               </div>
@@ -222,6 +223,23 @@ export default {
       index: 0,
     };
   },
+  computed: {
+    ENERC_KCAL() {
+      return this.groceryStats.parsed[this.index].food.nutrients.ENERC_KCAL
+    },
+    PROCNT() {
+      return this.groceryStats.parsed[this.index].food.nutrients.PROCNT
+    },
+    FAT() {
+      return this.groceryStats.parsed[this.index].food.nutrients.FAT
+    },
+    CHOCDF() {
+      return this.groceryStats.parsed[this.index].food.nutrients.CHOCDF
+    },
+    FIBTG() {
+      return this.groceryStats.parsed[this.index].food.nutrients.FIBTG
+    },
+  },
   methods: {
     //
     async fetchData(payload) {
@@ -245,6 +263,7 @@ export default {
         })
         .catch((err) => {
           console.error(err);
+          this.isLoading = false;
         });
     },
     //
