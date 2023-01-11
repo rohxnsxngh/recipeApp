@@ -129,19 +129,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="modal-action">
-          <label
-            for="existingRecipe"
-            class="btn btn-sm bg-gray-blue hover:bg-red-600 text-white"
-            >Close</label
-          >
-          <label
-            for="existingRecipe"
-            class="btn btn-sm bg-gray-blue hover:bg-green-600 text-white"
-            @click="updateRecipe(this.recipeId)"
-            >Update Recipe</label
-          >
-        </div> -->
       </div>
     </div>
     <!-- Cards -->
@@ -215,6 +202,7 @@ export default {
       recipes: [],
       recipeId: "",
       userQuery: "",
+      payload: "",
       index: 0,
       addRecipeForm: false,
     };
@@ -245,7 +233,6 @@ export default {
         return false;
       }
     },
-    //
     async getRecipes() {
       var recipesRef = await firebase
         .firestore()

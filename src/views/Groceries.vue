@@ -24,7 +24,7 @@
                     required
                   />
                 </div>
-                <div v-for="(produce, index) in grocery.groceries">
+                <div v-for="(produce, index) in grocery.groceries" class="flex">
                   <input
                     class="w-full px-3 py-2 my-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
                     id="ingredient"
@@ -34,6 +34,13 @@
                     v-model="grocery.groceries[index]"
                     required
                   />
+                  <label
+                    @click="fetchData(grocery.groceries[index])"
+                    class="btn btn-xs bg-yellow-600 hover:bg-green-600 text-white mx-2 mt-4"
+                    ><span class="material-icons text-sm text-black">
+                      info
+                    </span></label
+                  >
                 </div>
                 <div v-for="(isChecked, index) in grocery.isChecked">
                   <input
@@ -83,6 +90,58 @@
                   class="btn btn-sm bg-gray-blue hover:bg-green-600 text-white"
                   >Update Grocery List</label
                 >
+              </div>
+            </div>
+          </div>
+          <!-- Grocery Statistics -->
+          <div v-if="isLoading">
+            <div>
+              <p class="font-semibold">
+                Nutritional Information:
+                <span class="text-green-500">{{ groceryStats.text }}</span>
+              </p>
+            </div>
+            <div
+              class="stats stats-vertical lg:stats-horizontal shadow text-center"
+            >
+              <div class="stat">
+                <div class="stat-title">Energy</div>
+                <div class="stat-value">
+                  {{ groceryStats.parsed[0].food.nutrients.ENERC_KCAL }}
+                </div>
+                <div class="stat-desc">Energy (kilocalorie)</div>
+              </div>
+
+              <div class="stat">
+                <div class="stat-title">Protein</div>
+                <div class="stat-value">
+                  {{ groceryStats.parsed[0].food.nutrients.PROCNT }}
+                </div>
+                <div class="stat-desc">Amount of Protein (grams)</div>
+              </div>
+
+              <div class="stat">
+                <div class="stat-title">Fat</div>
+                <div class="stat-value">
+                  {{ groceryStats.parsed[0].food.nutrients.FAT }}
+                </div>
+                <div class="stat-desc">Total Lipids (grams)</div>
+              </div>
+
+              <div class="stat">
+                <div class="stat-title">Carbohydrate</div>
+                <div class="stat-value">
+                  {{ groceryStats.parsed[0].food.nutrients.CHOCDF }}
+                </div>
+                <div class="stat-desc">Carbohydrate by Difference (grams)</div>
+              </div>
+
+              <div class="stat">
+                <div class="stat-title">Fiber</div>
+                <div class="stat-value">
+                  {{ groceryStats.parsed[0].food.nutrients.FIBTG }}
+                </div>
+                <div class="stat-desc">Total Dietary Fiber (grams)</div>
               </div>
             </div>
           </div>
@@ -158,10 +217,37 @@ export default {
     return {
       groceries: [],
       groceryId: "",
+      groceryStats: [],
+      isLoading: false,
       index: 0,
     };
   },
   methods: {
+    //
+    fetchData(payload) {
+      // console.log(payload);
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "7f999eae26msh31113b5455bebd8p18dc04jsnb359ddad0a18",
+          "X-RapidAPI-Host": "edamam-food-and-grocery-database.p.rapidapi.com",
+        },
+      };
+
+      fetch(
+        `https://edamam-food-and-grocery-database.p.rapidapi.com/parser?ingr=${payload}`,
+        options
+      )
+        .then((response) => {
+          response.json().then((res) => (this.groceryStats = res));
+          this.isLoading = true;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+    //
     setGroceryId(docId) {
       this.groceryId = docId;
     },
