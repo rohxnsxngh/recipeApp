@@ -62,7 +62,7 @@
               Recipe Description
             </label>
             <textarea
-            class="w-full touch-pan-y h-3/6 px-3 py-2 mb-2 text-black bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+              class="w-full touch-pan-y h-3/6 px-3 py-2 mb-2 text-black bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
               id="recipeDescription"
               type="text"
               placeholder="Recipe Description"
@@ -115,6 +115,25 @@
                 </ul>
               </div>
             </div>
+            <button
+              @click="
+                addIngredientArray(
+                  recipe.ingredients,
+                  recipe.ingredientsAmounts
+                )
+              "
+              class="px-4 mr-4 mt-4 bg-turtle-green hover:bg-green-500 text-blue-gray hover:bg-gray-600 rounded-full focus:outline-none btn btn-xs"
+            >
+              <span class="material-icons text-sm text-white"> add </span>
+            </button>
+            <button
+              @click="
+                deleteIngredient(recipe.ingredients, recipe.ingredientsAmounts)
+              "
+              class="px-4 mt-4 bg-red-500 text-blue-gray bg-gray-blue hover:bg-red-600 rounded-full focus:outline-none btn btn-xs"
+            >
+              <span class="material-icons text-sm text-white"> remove </span>
+            </button>
             <div class="modal-action">
               <label
                 for="existingRecipe"
@@ -232,6 +251,16 @@ export default {
         return true;
       } else {
         return false;
+      }
+    },
+    addIngredientArray(arr, arr1) {
+      arr.push("");
+      arr1.push("");
+    },
+    deleteIngredient(arr, arr1) {
+      if (arr.length > 1) {
+        arr.pop();
+        arr1.pop();
       }
     },
     async getRecipes() {

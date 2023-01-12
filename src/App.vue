@@ -20,31 +20,31 @@ const signOut = () => {
 
 <template>
   <div class="h-screen bg-gradient-to-r from-yellow-500 via-turtle-green to-coconut justify-between w-screen overflow-x-hidden">
-    <nav class="bg-turtle-green px-4 py-2 flex items-center justify-between">
+    <nav class="bg-turtle-green px-4 py-2 flex items-center justify-between border-b-2 border-t-2 border-tan">
       <div class="flex items-center">
         <router-link
           to="/"
-          class="text-lg text-white font-semibold hover:text-black mr-4"
+          class="text-sm sm:text-lg text-white font-semibold hover:text-black mr-4"
         >
           Home
         </router-link>
         <router-link
           to="/about"
-          class="text-md text-white font-semibold hover:text-black mr-4"
+          class="text-sm sm:text-lg text-white font-semibold hover:text-black mr-4"
         >
           About
         </router-link>
         <div class="text-white mx-2">
-          <span v-if="isLoggedIn">
+          <span v-if="isLoggedIn" class="flex text-sm sm:text-lg">
             <router-link
               to="/feed"
-              class="text-md font-semibold hover:text-black mr-4"
+              class="font-semibold hover:text-black mr-4"
             >
               Feed
             </router-link>
             <router-link
               to="/groceries"
-              class="text-md font-semibold hover:text-black mr-4"
+              class="font-semibold hover:text-black mr-4"
             >
               Groceries
             </router-link>
@@ -60,7 +60,7 @@ const signOut = () => {
           <button
             v-if="isLoggedIn"
             @click="signOut"
-            class="px-4 py-2 bg-transparent font-bold text-md text-white hover:bg-gray-600 rounded-full focus:outline-none"
+            class="px-4 py-2 bg-transparent font-bold text-sm sm:text-md text-white hover:bg-gray-600 rounded-full focus:outline-none"
           >
             Logout
           </button>

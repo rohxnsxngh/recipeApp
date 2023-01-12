@@ -1,10 +1,10 @@
 <template>
-  <footer class="footer items-center p-4 bg-turtle-green text-black">
+  <footer class="footer items-center p-4 bg-turtle-green text-white border-t-2 border-b-2 border-tan">
     <div class="items-center grid-flow-col sm:font-semibold text-xs sm:text-md">
       <p>Copyright © 2023 - All right reserved</p>
     </div>
     <div class="flex justify-center absolute right-5">
-      <!-- <a href="#!" class="mr-1 sm:mr-6 text-coconut">
+      <!-- <a href="#!" class="mr-1 sm:mr-6 text-white">
         <svg
           aria-hidden="true"
           focusable="false"
@@ -21,7 +21,7 @@
           ></path>
         </svg>
       </a> -->
-      <!-- <a href="#!" class="mr-1 sm:mr-6 text-coconut">
+      <!-- <a href="#!" class="mr-1 sm:mr-6 text-white">
         <svg
           aria-hidden="true"
           focusable="false"
@@ -40,7 +40,7 @@
       </a> -->
       <a
         href="mailto:rohan.singh.do@gmail.com"
-        class="mr-1 sm:mr-6 text-coconut"
+        class="mr-1 sm:mr-6 text-white"
       >
         <svg
           aria-hidden="true"
@@ -58,7 +58,7 @@
           ></path>
         </svg>
       </a>
-      <a href="#!" class="mr-1 sm:mr-6 text-coconut">
+      <a href="#!" class="mr-1 sm:mr-6 text-white">
         <svg
           aria-hidden="true"
           focusable="false"
@@ -77,7 +77,7 @@
       </a>
       <a
         href="https://www.linkedin.com/in/rohan-singh1122/"
-        class="mr-1 sm:mr-6 text-coconut"
+        class="mr-1 sm:mr-6 text-white"
       >
         <svg
           aria-hidden="true"
@@ -95,7 +95,7 @@
           ></path>
         </svg>
       </a>
-      <a href="https://github.com/rohxnsxngh" class="text-coconut">
+      <a href="https://github.com/rohxnsxngh" class="text-white">
         <svg
           aria-hidden="true"
           focusable="false"
