@@ -9,7 +9,7 @@
         <div class="flex flex-col">
           <div v-for="grocery in groceries" class="justify-center mt-8">
             <div v-if="showGroceryId(grocery.id)">
-              <div class="font-semibold">
+              <div class="font-semibold text-green-500">
                 Grocery List for: {{ grocery.groceryDate.toLocaleDateString() }}
               </div>
               <div class="columns-3 gap-x-5">
@@ -88,7 +88,7 @@
                 <label
                   for="existingGrocery"
                   @click="updateGroceries(grocery.id)"
-                  class="btn btn-sm bg-gray-blue hover:bg-green-600 text-white"
+                  class="btn btn-sm bg-turtle-green hover:bg-green-600 text-white"
                   >Update Grocery List</label
                 >
               </div>

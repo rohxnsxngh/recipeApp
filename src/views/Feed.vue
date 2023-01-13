@@ -9,11 +9,11 @@
     <!-- Put this part before </body> tag -->
     <input type="checkbox" id="existingRecipe" class="modal-toggle" />
     <div class="modal">
-      <div class="modal-box bg-coconut w-11/12 max-w-6xl">
+      <div class="modal-box w-11/12 max-w-6xl">
         <!-- inside modal -->
         <div v-for="recipe in recipes" class="flex justify-center mt-8">
           <div v-if="showRecipeId(recipe.id)">
-            <label class="block font-bold mb-2 text-blue-gray">
+            <label class="block font-bold my-2 text-green-500">
               Recipe Title
             </label>
             <input
@@ -24,7 +24,7 @@
               v-model="recipe.recipeTitle"
               required
             />
-            <label class="block font-bold mb-2 text-blue-gray">
+            <label class="block font-bold my-2 text-green-500">
               Recipe Preparation Time
             </label>
             <input
@@ -35,7 +35,7 @@
               v-model="recipe.prepTime"
               required
             />
-            <label class="block font-bold mb-2 text-blue-gray">
+            <label class="block font-bold my-2 text-green-500">
               Recipe Time to Cook
             </label>
             <input
@@ -46,7 +46,7 @@
               v-model="recipe.cookTime"
               required
             />
-            <label class="block font-bold mb-2 text-blue-gray">
+            <label class="block font-bold my-2 text-green-500">
               Recipe Type
             </label>
             <input
@@ -58,7 +58,7 @@
               required
             />
             <br />
-            <label class="block font-bold mb-2 text-blue-gray">
+            <label class="block font-bold my-2 text-green-500">
               Recipe Description
             </label>
             <textarea
@@ -69,7 +69,7 @@
               v-model="recipe.recipeDescription"
               required
             ></textarea>
-            <label class="block font-bold mb-2 text-blue-gray">
+            <label class="block font-bold mb-2 text-green-500">
               Recipe Instructions
             </label>
             <textarea
@@ -83,10 +83,13 @@
             </textarea>
             <div class="flex flex-inline">
               <div class="">
-                <label class="block font-bold my-4 text-blue-gray">
+                <label class="block font-bold text-green-500">
                   Ingredients
                 </label>
-                <div v-for="(ingredient, index) in recipe.ingredients">
+                <div
+                  v-for="(ingredient, index) in recipe.ingredients"
+                  class="flex"
+                >
                   <input
                     class="w-full px-3 py-2 my-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
                     id="ingredient"
@@ -96,10 +99,17 @@
                     v-model="recipe.ingredients[index]"
                     required
                   />
+                  <label
+                    @click="fetchData(recipe.ingredients[index])"
+                    class="btn btn-xs bg-yellow-600 hover:bg-green-600 text-white mx-2 mt-4"
+                    ><span class="material-icons text-sm text-black">
+                      info
+                    </span></label
+                  >
                 </div>
               </div>
               <div class="mx-12">
-                <label class="block font-bold my-4 text-blue-gray">
+                <label class="block font-bold text-green-500">
                   Amount
                 </label>
                 <ul v-for="(amount, index) in recipe.ingredientsAmounts">
@@ -122,7 +132,7 @@
                   recipe.ingredientsAmounts
                 )
               "
-              class="px-4 mr-4 mt-4 bg-turtle-green hover:bg-green-500 text-blue-gray hover:bg-gray-600 rounded-full focus:outline-none btn btn-xs"
+              class="px-4 mr-4 mt-4 bg-turtle-green hover:bg-green-500 text-green-500 hover:bg-gray-600 rounded-full focus:outline-none btn btn-xs"
             >
               <span class="material-icons text-sm text-white"> add </span>
             </button>
@@ -130,22 +140,78 @@
               @click="
                 deleteIngredient(recipe.ingredients, recipe.ingredientsAmounts)
               "
-              class="px-4 mt-4 bg-red-500 text-blue-gray bg-gray-blue hover:bg-red-600 rounded-full focus:outline-none btn btn-xs"
+              class="px-4 mt-4 bg-red-500 text-green-500 bg-gray-blue hover:bg-red-600 rounded-full focus:outline-none btn btn-xs"
             >
               <span class="material-icons text-sm text-white"> remove </span>
             </button>
             <div class="modal-action">
               <label
+                @click="isLoading = false"
                 for="existingRecipe"
-                class="btn btn-sm bg-gray-blue hover:bg-red-600 text-white"
+                class="btn btn-sm mb-2 bg-gray-blue hover:bg-red-600 text-white"
                 >Close</label
               >
               <label
                 for="existingRecipe"
-                class="btn btn-sm bg-gray-blue hover:bg-green-600 text-white"
+                class="btn btn-sm mb-2 bg-turtle-green hover:bg-green-600 text-white"
                 @click="updateRecipe(recipe.id)"
                 >Update Recipe</label
               >
+            </div>
+            <!-- Grocery Statistics -->
+            <div v-if="isLoading">
+              <div>
+                <p class="font-semibold">
+                  Nutritional Information:
+                  <span class="text-green-500">{{ groceryStats.text }}</span>
+                </p>
+              </div>
+              <div
+                class="stats stats-vertical lg:stats-horizontal shadow text-center mb-2"
+                v-if="groceryStats.parsed"
+              >
+                <div class="stat">
+                  <div class="stat-title">Energy</div>
+                  <div class="stat-value">
+                    {{ ENERC_KCAL }}
+                  </div>
+                  <div class="stat-desc">Energy (kilocalorie)</div>
+                </div>
+
+                <div class="stat">
+                  <div class="stat-title">Protein</div>
+                  <div class="stat-value">
+                    {{ PROCNT }}
+                  </div>
+                  <div class="stat-desc">Amount of Protein (grams)</div>
+                </div>
+
+                <div class="stat">
+                  <div class="stat-title">Fat</div>
+                  <div class="stat-value">
+                    {{ FAT }}
+                  </div>
+                  <div class="stat-desc">Total Lipids (grams)</div>
+                </div>
+
+                <div class="stat">
+                  <div class="stat-title">Carbohydrate</div>
+                  <div class="stat-value">
+                    {{ CHOCDF }}
+                  </div>
+                  <div class="stat-desc">
+                    Carbohydrate by Difference (grams)
+                  </div>
+                </div>
+
+                <div class="stat">
+                  <div class="stat-title">Fiber</div>
+                  <div class="stat-value">
+                    {{ FIBTG }}
+                  </div>
+                  <div class="stat-desc">Total Dietary Fiber (grams)</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -221,27 +287,54 @@ export default {
     return {
       recipes: [],
       recipeId: "",
-      userQuery: "",
-      payload: "",
+      groceryStats: [],
+      isLoading: false,
       index: 0,
       addRecipeForm: false,
     };
   },
   computed: {
-    filteredSystem() {
-      const self = this;
-      return this.recipes.filter((x) => {
-        return (
-          x.recipeTitle.toLowerCase().indexOf(self.userQuery.toLowerCase()) >=
-            0 ||
-          x.recipeType.toLowerCase().indexOf(self.userQuery.toLowerCase()) >=
-            0 ||
-          x.ingredient.toLowerCase().indexOf(self.userQuery.toLowerCase()) >= 0
-        );
-      });
+    ENERC_KCAL() {
+      return this.groceryStats.parsed[this.index].food.nutrients.ENERC_KCAL;
+    },
+    PROCNT() {
+      return this.groceryStats.parsed[this.index].food.nutrients.PROCNT;
+    },
+    FAT() {
+      return this.groceryStats.parsed[this.index].food.nutrients.FAT;
+    },
+    CHOCDF() {
+      return this.groceryStats.parsed[this.index].food.nutrients.CHOCDF;
+    },
+    FIBTG() {
+      return this.groceryStats.parsed[this.index].food.nutrients.FIBTG;
     },
   },
   methods: {
+    async fetchData(payload) {
+      // console.log(payload);
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "7f999eae26msh31113b5455bebd8p18dc04jsnb359ddad0a18",
+          "X-RapidAPI-Host": "edamam-food-and-grocery-database.p.rapidapi.com",
+        },
+      };
+
+      fetch(
+        `https://edamam-food-and-grocery-database.p.rapidapi.com/parser?ingr=${payload}`,
+        options
+      )
+        .then((response) => {
+          response.json().then((res) => (this.groceryStats = res));
+          this.isLoading = true;
+        })
+        .catch((err) => {
+          console.error(err);
+          this.isLoading = false;
+        });
+    },
     setRecipeId(docId) {
       this.recipeId = docId;
       return this.recipeId;
