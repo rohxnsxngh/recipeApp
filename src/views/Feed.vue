@@ -268,7 +268,7 @@
       </button>
     </form>
 
-    <div class="divider"></div> 
+    <div class="divider"></div>
 
     <div class="px-4 mb-10 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">
       <div
@@ -359,9 +359,12 @@ export default {
     },
     filteredList() {
       return this.recipes.filter((recipe) => {
-        return recipe.recipeTitle
-          .toLowerCase()
-          .includes(this.search.toLowerCase());
+        return (
+          recipe.recipeTitle
+            .toLowerCase()
+            .includes(this.search.toLowerCase()) ||
+          recipe.recipeType.toLowerCase().includes(this.search.toLowerCase())
+        );
       });
     },
   },

@@ -297,9 +297,15 @@ export default {
     },
     filteredList() {
       return this.groceries.filter((grocery) => {
-        return grocery.groceries[this.index]
-          .toLowerCase()
-          .includes(this.search.toLowerCase());
+        return (
+          grocery.groceries[this.index]
+            .toLowerCase()
+            .includes(this.search.toLowerCase()) ||
+          grocery.groceryDate
+            .toLocaleDateString()
+            .toLowerCase()
+            .includes(this.search.toLowerCase())
+        );
       });
     },
   },
