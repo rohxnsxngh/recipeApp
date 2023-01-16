@@ -11,7 +11,7 @@
           <h1 class="text-6xl text-white font-bold">Get Started</h1>
           <p class="py-6 text-black glass bg-tan my-4 px-6 rounded-lg font-semibold hover:text-white hover:bg-coconut hover:-translate-y-3 hover:-translate-x-3 transition duration-700">
             Welcome to a user-friendly and intuitive one stop shop for
-            organizing your dietary life. Making it easy for you to plan their
+            organizing your dietary life. Making it easy for you to plan you're
             meals and grocery shopping. It provides helpful features such as
             recipe storage, grocery lists, expiration date tracking, and
             nutritional information, making meal planning and grocery shopping
