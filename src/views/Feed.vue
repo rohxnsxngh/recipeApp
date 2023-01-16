@@ -109,9 +109,7 @@
                 </div>
               </div>
               <div class="mx-12">
-                <label class="block font-bold text-green-500">
-                  Amount
-                </label>
+                <label class="block font-bold text-green-500"> Amount </label>
                 <ul v-for="(amount, index) in recipe.ingredientsAmounts">
                   <input
                     class="w-full px-3 py-2 my-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
@@ -221,14 +219,9 @@
     <div class="px-4 mb-10 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">
       <div
         v-for="recipe in recipes"
-        class="bg-tan card card-compact text-black hover:bg-coconut hover:text-white hover:-translate-y-6 hover:-translate-x-6 transition duration-700 h-full lg:w-80 md:w-60 sm:w-52 w-42 mb-24 shadow-xl mx-auto"
+        class="bg-tan card card-compact text-black hover:bg-coconut hover:text-white hover:-translate-y-6 hover:-translate-x-6 transition duration-700 w-full h-full lg:w-80 md:w-60 sm:w-52 w-42 mb-24 shadow-xl mx-auto"
       >
-        <figure>
-          <img
-            src="https://parade.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTkwNTgxMjkxNjk3NTc5OTAw/istock-1203599963-jpg.jpg"
-            alt="Recipies"
-          />
-        </figure>
+      <span class="material-icons text-center text-9xl"> menu_book </span>
         <div class="card-body">
           <p class="text-center font-bold sm:text-lg text-sm">
             {{ recipe.recipeTitle }}

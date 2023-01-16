@@ -9,6 +9,61 @@
         <div class="flex flex-col">
           <div v-for="grocery in groceries" class="justify-center mt-8">
             <div v-if="showGroceryId(grocery.id)">
+              <!-- Grocery Statistics -->
+              <div v-if="isLoading">
+                <div>
+                  <p class="font-semibold">
+                    Nutritional Information:
+                    <span class="text-green-500">{{ groceryStats.text }}</span>
+                  </p>
+                </div>
+                <div
+                  class="stats stats-vertical lg:stats-horizontal shadow text-center mb-4"
+                  v-if="groceryStats.parsed"
+                >
+                  <div class="stat">
+                    <div class="stat-title">Energy</div>
+                    <div class="stat-value">
+                      {{ ENERC_KCAL }}
+                    </div>
+                    <div class="stat-desc">Energy (kilocalorie)</div>
+                  </div>
+
+                  <div class="stat">
+                    <div class="stat-title">Protein</div>
+                    <div class="stat-value">
+                      {{ PROCNT }}
+                    </div>
+                    <div class="stat-desc">Amount of Protein (grams)</div>
+                  </div>
+
+                  <div class="stat">
+                    <div class="stat-title">Fat</div>
+                    <div class="stat-value">
+                      {{ FAT }}
+                    </div>
+                    <div class="stat-desc">Total Lipids (grams)</div>
+                  </div>
+
+                  <div class="stat">
+                    <div class="stat-title">Carbohydrate</div>
+                    <div class="stat-value">
+                      {{ CHOCDF }}
+                    </div>
+                    <div class="stat-desc">
+                      Carbohydrate by Difference (grams)
+                    </div>
+                  </div>
+
+                  <div class="stat">
+                    <div class="stat-title">Fiber</div>
+                    <div class="stat-value">
+                      {{ FIBTG }}
+                    </div>
+                    <div class="stat-desc">Total Dietary Fiber (grams)</div>
+                  </div>
+                </div>
+              </div>
               <div class="font-semibold text-green-500">
                 Grocery List for: {{ grocery.groceryDate.toLocaleDateString() }}
               </div>
@@ -94,71 +149,16 @@
               </div>
             </div>
           </div>
-          <!-- Grocery Statistics -->
-          <div v-if="isLoading">
-            <div>
-              <p class="font-semibold">
-                Nutritional Information:
-                <span class="text-green-500">{{ groceryStats.text }}</span>
-              </p>
-            </div>
-            <div
-              class="stats stats-vertical lg:stats-horizontal shadow text-center"
-              v-if="groceryStats.parsed"
-            >
-              <div class="stat">
-                <div class="stat-title">Energy</div>
-                <div class="stat-value">
-                  {{ ENERC_KCAL }}
-                </div>
-                <div class="stat-desc">Energy (kilocalorie)</div>
-              </div>
-
-              <div class="stat">
-                <div class="stat-title">Protein</div>
-                <div class="stat-value">
-                  {{ PROCNT }}
-                </div>
-                <div class="stat-desc">Amount of Protein (grams)</div>
-              </div>
-
-              <div class="stat">
-                <div class="stat-title">Fat</div>
-                <div class="stat-value">
-                  {{ FAT }}
-                </div>
-                <div class="stat-desc">Total Lipids (grams)</div>
-              </div>
-
-              <div class="stat">
-                <div class="stat-title">Carbohydrate</div>
-                <div class="stat-value">
-                  {{ CHOCDF }}
-                </div>
-                <div class="stat-desc">Carbohydrate by Difference (grams)</div>
-              </div>
-
-              <div class="stat">
-                <div class="stat-title">Fiber</div>
-                <div class="stat-value">
-                  {{ FIBTG }}
-                </div>
-                <div class="stat-desc">Total Dietary Fiber (grams)</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
     <!-- Cards -->
-    <div
-      class="px-4 mt-10 mb-10 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4"
-    >
+    <div class="px-4 mb-10 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">
       <div
-        class="bg-tan card card-compact text-black hover:bg-coconut hover:text-white hover:-translate-y-6 hover:-translate-x-6 transition duration-700 h-full lg:w-80 md:w-60 sm:w-52 w-42 mb-24 shadow-xl mx-auto"
+        class="bg-tan card card-compact text-black hover:bg-coconut hover:text-white hover:-translate-y-6 hover:-translate-x-6 transition duration-700 w-full h-full lg:w-80 md:w-60 sm:w-52 w-42 mb-24 shadow-xl mx-auto"
         v-for="grocery in groceries"
       >
-        <span class="material-icons text-center text-9xl"> menu_book </span>
+        <span class="material-icons text-center text-9xl"> receipt_long </span>
         <div class="card-body">
           <p class="text-center font-bold sm:text-lg text-sm">
             Grocery List for: <br />

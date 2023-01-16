@@ -13,7 +13,7 @@
           The perfect simple solution for managing a healthier diet, from
           grocery lists to recipe organization
         </p>
-        <router-link to="/about" class="btn glass text-black hover:text-white bg-coconut">
+        <router-link to="/about" class="btn glass text-black hover:text-white bg-coconut hover:bg-turtle-green">
           Get Started
         </router-link>
       </div>

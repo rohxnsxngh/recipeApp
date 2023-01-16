@@ -1,13 +1,13 @@
 <template>
   <div class="flex justify-center mt-8">
-    <div class="w-full max-w-xs bg-tan rounded-lg shadow-md p-4 md:p-8">
+    <div class="w-full max-w-xs glass bg-tan text-black rounded-lg shadow-md p-4 md:p-8 hover:text-white">
       <h1 class="text-2xl font-semibold text-gray-800 mb-4">Create an Account</h1>
       <div class="mb-4">
-        <label class="block font-bold mb-2 text-gray-700" for="email">
+        <label class="block font-bold mb-2" for="email">
           Email
         </label>
         <input
-          class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full px-3 py-2 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           id="email"
           type="text"
           placeholder="Email"
@@ -15,11 +15,11 @@
         />
       </div>
       <div class="mb-4">
-        <label class="block font-bold mb-2 text-gray-700" for="password">
+        <label class="block font-bold mb-2" for="password">
           Password
         </label>
         <input
-          class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full px-3 py-2 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           id="password"
           type="password"
           placeholder="Password"
