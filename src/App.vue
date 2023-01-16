@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watchEffect } from "vue"; // used for conditional rendering
+import { ref } from "vue"; // used for conditional rendering
 import firebase from "firebase";
 import { useRouter } from "vue-router";
 const router = useRouter();

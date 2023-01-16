@@ -3,11 +3,12 @@
     <div class="w-full max-w-xs glass bg-tan text-black rounded-lg shadow-md p-4 md:p-8 hover:text-white">
       <h1 class="text-2xl font-semibold text-gray-800 mb-4">Create an Account</h1>
       <div class="mb-4">
+        <p v-if="errMsg" class="text-red-600 text-md font-semibold">{{ errMsg }}</p>
         <label class="block font-bold mb-2" for="email">
           Email
         </label>
         <input
-          class="w-full px-3 py-2 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full px-3 py-2 text-black bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           id="email"
           type="text"
           placeholder="Email"
@@ -19,11 +20,23 @@
           Password
         </label>
         <input
-          class="w-full px-3 py-2 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full px-3 py-2 text-black bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           id="password"
           type="password"
           placeholder="Password"
           v-model="password"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block font-bold mb-2" for="password">
+          Confirm Password
+        </label>
+        <input
+          class="w-full px-3 py-2 text-black bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          id="confirmPassword"
+          type="password"
+          placeholder="Password"
+          v-model="confirmPassword"
         />
       </div>
       <div class="flex items-center justify-between">
@@ -46,9 +59,12 @@ import { useRouter} from 'vue-router';
 
 const email = ref("");
 const password = ref("");
+const errMsg = ref("");
+const confirmPassword = ref("");
 const router = useRouter();
 const register = () => {
-  firebase
+  if (password.value == confirmPassword.value) {
+    firebase
     .auth()
     .createUserWithEmailAndPassword(email.value, password.value)
     .then((data) => {
@@ -59,5 +75,9 @@ const register = () => {
       console.log(error.code);
       alert(error.message);
     });
+  }
+  else {
+    errMsg.value = "Passwords do not match"
+  }
 };
 </script>

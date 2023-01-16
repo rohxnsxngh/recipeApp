@@ -8,7 +8,7 @@
           Email
         </label>
         <input
-          class="w-full px-3 py-2 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full px-3 py-2 text-black bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           id="email"
           type="text"
           placeholder="Email"
@@ -20,24 +20,23 @@
           Password
         </label>
         <input
-          class="w-full px-3 py-2 bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
+          class="w-full px-3 py-2 text-black bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline"
           id="password"
           type="password"
           placeholder="Password"
           v-model="password"
         />
       </div>
-      <!-- <div class="mb-4">
+      <div class="mb-4 flex">
         <input
-          class="leading-tight"
+          class="checkbox checkbox-sm border-2 border-black"
           type="checkbox"
           id="remember-me"
-          v-model="rememberMe"
         />
-        <label class="text-gray-700 font-bold" for="remember-me">
+        <label class="font-bold mx-2" for="remember-me">
           Remember me
         </label>
-      </div> -->
+      </div>
       <div class="flex items-center justify-between">
         <button
           class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
